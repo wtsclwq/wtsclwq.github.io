@@ -110,9 +110,21 @@
     <link href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/"/>
     <url>/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/</url>
     
-    <content type="html"><![CDATA[<hr><p>title: Linux学习记录（三）实用指令：时间日期类<br>date: 2020-5-27 12:49:00<br>categories: Linux<br>tags:</p><ul><li>指令<br>index_img: <a href="https://ypimg.lwqlearn.xyz/blog/wallhaven-p8k19e.jpg" target="_blank" rel="noopener">https://ypimg.lwqlearn.xyz/blog/wallhaven-p8k19e.jpg</a><h2 id="四、时间日期类"><a href="#四、时间日期类" class="headerlink" title="四、时间日期类"></a>四、时间日期类</h2><h4 id="date指令-显示当前日期"><a href="#date指令-显示当前日期" class="headerlink" title="date指令-显示当前日期"></a>date指令-显示当前日期</h4><code>date</code>默认格式<br><code>date &quot;+%Y-%m-%d&quot;</code>年-月-日<br><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code>年-月-日 时:分:秒<h4 id="date指令-设置日期"><a href="#date指令-设置日期" class="headerlink" title="date指令-设置日期"></a>date指令-设置日期</h4><code>date -s 字符串时间</code><h4 id="cal指令-日历"><a href="#cal指令-日历" class="headerlink" title="cal指令-日历"></a>cal指令-日历</h4><code>cal [选项]</code><br><code>cal</code><br><code>cal 2020</code></li></ul>]]></content>
+    <content type="html"><![CDATA[<h2 id="四、时间日期类"><a href="#四、时间日期类" class="headerlink" title="四、时间日期类"></a>四、时间日期类</h2><h4 id="date指令-显示当前日期"><a href="#date指令-显示当前日期" class="headerlink" title="date指令-显示当前日期"></a>date指令-显示当前日期</h4><p><code>date</code>默认格式<br><code>date &quot;+%Y-%m-%d&quot;</code>年-月-日<br><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code>年-月-日 时:分:秒</p><h4 id="date指令-设置日期"><a href="#date指令-设置日期" class="headerlink" title="date指令-设置日期"></a>date指令-设置日期</h4><p><code>date -s 字符串时间</code></p><h4 id="cal指令-日历"><a href="#cal指令-日历" class="headerlink" title="cal指令-日历"></a>cal指令-日历</h4><p><code>cal [选项]</code><br><code>cal</code><br><code>cal 2020</code></p>]]></content>
     
     
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+    </tags>
     
   </entry>
   
