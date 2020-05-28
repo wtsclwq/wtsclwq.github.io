@@ -1,1112 +1,826 @@
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
+<html lang="zh-CN">
 
+
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.ico">
+  <link rel="icon" type="image/png" href="/img/favicon.ico">
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
   
+  <meta name="theme-color" content="#1e2022">
+  <meta name="description" content="">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
   <title>Hexo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://wtsclwq.github.io/page/2/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  
-<link rel="stylesheet" href="/css/style.css">
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
+<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
+
+
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
 
 <meta name="generator" content="Hexo 4.2.1"></head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
+  <header style="height: 100vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand"
+       href="/">&nbsp;<strong>如言</strong>&nbsp;</a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
         
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wtsclwq.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-    <article id="post-yuque/项目总结（二） 数据库和接口设计" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" class="article-date">
-  <time datetime="2020-05-12T16:45:12.000Z" itemprop="datePublished">2020-05-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">项目总结（二） 数据库和接口设计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、概述"><a href="#1、概述" class="headerlink" title="1、概述"></a>1、概述</h2><p>其实关于项目构建的顺序和步骤一直都有点迷糊，虽然软件工程这门课也学了，但是到了具体的 web 项目上却有点手足无措，不知道从何做起，借鉴了其他博主的文章，于是就有了这次的数据库和接口设计，当然内容方面也有借鉴（厚脸皮）。</p>
-<h2 id="2、数据表"><a href="#2、数据表" class="headerlink" title="2、数据表"></a>2、数据表</h2><h3 id="（1）要哪些表"><a href="#（1）要哪些表" class="headerlink" title="（1）要哪些表"></a>（1）要哪些表</h3><p>其实无论什么系统，都少不了的要有访问和日志纪录，虽然不会有什么人看，哈哈。<br>基本的还应该有文章信息表、文章内容表（为什么分开后面说）、分类表、用户表、评论表<br>除了这些我还想试一下用 Spring Security 做个权限管理，因此就要加上角色表和权限表。</p>
-<p>文章和内容分开存放其实也是借鉴了那位博主的，文章长度太长的话对存取数据库的性能有影响，分开存放更灵活一些，据说这也是阿里巴巴的设计规范。<br>然后这些表之间都额外用了一张关系表来存放对应关系，比如文章和内容、文章和分类、用户和角色、角色和用户、文章和评论。<br>前台并没打算提供登录入口，所以就采用那种带邮箱联系方式的类型吧，其实就是写死的，哈哈。</p>
-<h3 id="（2）有哪些表"><a href="#（2）有哪些表" class="headerlink" title="（2）有哪些表"></a>（2）有哪些表</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1413724/1589348415484-a55b530c-b9c6-4c90-b3e2-a2769ecb67c8.png#align=left&display=inline&height=433&margin=%5Bobject%20Object%5D&name=er%E5%9B%BE.png&originHeight=747&originWidth=1344&size=113612&status=done&style=none&width=779" srcset="/img/loading.gif" alt="er图.png"></p>
-<h2 id="3、MyBatis-逆向工程"><a href="#3、MyBatis-逆向工程" class="headerlink" title="3、MyBatis 逆向工程"></a>3、MyBatis 逆向工程</h2><h3 id="（1）什么是逆向工程"><a href="#（1）什么是逆向工程" class="headerlink" title="（1）什么是逆向工程"></a>（1）什么是逆向工程</h3><p>其实就是一个插件，把 MyBatis 做的事情做的事给反过来，MyBatis 通过我们写的一些 xml 和 entity 来操作数据库，而这个逆向工程则可以帮我们根据数据库来生成这些 xml、entity 和 mapper 接口，这是我的理解，有点浅显，毕竟从来没接触过 MyBatis。<br>这里我学 MyBatis 其实就学了一晚上，对源码没什么认识，主要就是看了个教学视频，会用就很不错了，以后有时间了再好好了解底层的源码。<br><a href="https://www.bilibili.com/video/BV1V7411w7VW" target="_blank" rel="noopener">视频地址在这</a></p>
-<h3 id="（2）怎么做"><a href="#（2）怎么做" class="headerlink" title="（2）怎么做"></a>（2）怎么做</h3><p>这里我用了 GitHub 上的一个项目，魔改了原始的逆向工程，增加了很多新功能。<br><a href="https://github.com/orange1438/mybatis-generator-core-chinese-annotation-1.3.5" target="_blank" rel="noopener">项目地址在这</a></p>
-<h2 id="4、接口设计"><a href="#4、接口设计" class="headerlink" title="4、接口设计"></a>4、接口设计</h2><h3 id="（1）RESTful-接口"><a href="#（1）RESTful-接口" class="headerlink" title="（1）RESTful 接口"></a>（1）RESTful 接口</h3><p>第一次知道 REST 是在一本 Spring Boot 的书上，当时看到的时候感觉好复杂，难以理解，就瞥了几眼跳过了。但是后来在看别人的项目时看到很多人都采用了这种接口设计风格，我也想尝试一下。说实话，这里面的核心思想我也没掌握，就只是依葫芦画瓢的用了四种注解（GET、POST、PUT、DELETE），然后加上各种参数的限制等，就成了。<br>然后还看到有人在用 Swaager 这个框架，了解了一下发现是用来写接口文档的，感觉很有意思，就加上了。</p>
-<h3 id="（2）接口分析"><a href="#（2）接口分析" class="headerlink" title="（2）接口分析"></a>（2）接口分析</h3><p>其实有哪些接口就是根据你需要做什么事情来分析的，比如文章，需要基本的根据 id 的增删改查，还要能获取所有文章吧，还要能获取某一分类的文章吧……</p>
-<h3 id="（3）具体设计"><a href="#（3）具体设计" class="headerlink" title="（3）具体设计"></a>（3）具体设计</h3><p><img src="https://cdn.nlark.com/yuque/0/2020/png/1413724/1589382260741-f0dccb53-73c6-4476-b6c0-88ad7d930da2.png#align=left&display=inline&height=348&margin=%5Bobject%20Object%5D&name=TIM%E6%88%AA%E5%9B%BE20200513230405.png&originHeight=348&originWidth=387&size=16416&status=done&style=none&width=387" srcset="/img/loading.gif" alt="TIM截图20200513230405.png"><br>再具体一点我就不贴了，写的不是太好，没啥学习价值，也可以去我的 Github 看。</p>
-<h2 id="5、Service-层设计"><a href="#5、Service-层设计" class="headerlink" title="5、Service 层设计"></a>5、Service 层设计</h2><p>Service 完全可以根据接口层的设计来设计，有几个 Controller 就可以对应着写几个 Service，我也是这样做的，虽然可能会臃肿一点，但是项目的接口层次很清晰，我自己看着也很舒服。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" data-id="ckakll6pe0014d8tf6lw8ghd6" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-yuque/折腾了一整天的美化，有一些心得" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/" class="article-date">
-  <time datetime="2020-05-12T12:17:00.000Z" itemprop="datePublished">2020-05-12</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/hexo/">hexo</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/">折腾了一整天的美化，有一些心得</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1、起因"><a href="#1、起因" class="headerlink" title="1、起因"></a>1、起因</h2><p>闲来无事酷安，偶然间看到有人在刷语雀的推广码，就点进去看了一下，发现 UI 和功能都很能打动我，遂注册登录下载，然后去知乎搜了一下看看大家都怎么看语雀，还是好评居多。又碰巧瞥到了一个 hexo 与语雀结合的案例，并且用 Travis CI 进行自动更新，真是太香了啊，开整。</p>
-<h2 id="2、过程"><a href="#2、过程" class="headerlink" title="2、过程"></a>2、过程</h2><p>从八点钟开始折腾了一晚上，先装了 Ruby，再装 Msys2，结果到最后还是装不上 Travis，一直到后半夜也没搞好。到后来又看到了 GitHub Actions 这个东西，和也能够实现持续集成，结果也还是搞不好，文件、SSH、Token 自我检查感觉全都没问题，结果却一直不成功，好吧，一直折腾到 4 点钟，放弃睡觉。</p>
-<h2 id="3、转折"><a href="#3、转折" class="headerlink" title="3、转折"></a>3、转折</h2><p>后来放弃了持续集成这个念头，决定就用 yuque-hexo 加上自己勤劳的双手手动更新吧，然后看上了一款 hexo 的主题：<a href="https://github.com/hongweifuture/hexo-theme-halo" target="_blank" rel="noopener"><strong>halo</strong></a>，接着开整，结果啊主题下载后，各种文件也配置了，yml 写的也没啥问题，结果一直报错，网上能找到的解决方案寥寥无几也都没有效果，从 10 点一直折腾到下午 2 点，放弃。换一款主题，结果三分钟搞定，虽然效果没有那么炫酷，但是简单、整洁：<strong><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">fluid</a>。</strong>找了一下好看的图片，把主题原来的浅色配色改成了深色，总算是告一段落了。<br>成果就是<a href="https://www.lwqlearn.xyz/" target="_blank" rel="noopener"><strong>这样</strong></a>了。</p>
-<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><p>赏心悦目的设计和酷炫的效果确实诱人，显示现在回想起来为了这写耗费了一整天的时间，是不是值得呢？如果自己的前端知识更丰富一点是不是就不会费这么大的力气了呢？将这些时间用来学习，用原来简洁的 next 主题也很好呀。<br>喜欢折腾不是坏事，但是今天的做法我觉得自己有些本末倒置了，博客最大的作用应该是记录自己的学习和生活轨迹，分享自己的知识和经验，内容才是最重要的，还好我及时转变了思想，现在的这款主题用着也是很香的，嘻嘻。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/" data-id="ckakll6pb0013d8tfd2pr38td" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-项目总结（一）-关于Web项目架构的思考" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/" class="article-date">
-  <time datetime="2020-04-30T14:48:29.000Z" itemprop="datePublished">2020-04-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/">项目总结（一） 关于Web项目架构的思考</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="什么项目"><a href="#什么项目" class="headerlink" title="什么项目"></a>什么项目</h2><p>这次做的是一个博客系统，其实一直都挺想做一个属于自己的博客系统，现在的这个博客是用Github的搭的，用的都是网上的主题，自己也一知半解，虽然很好看，哈哈。</p>
-<h2 id="选了啥技术"><a href="#选了啥技术" class="headerlink" title="选了啥技术"></a>选了啥技术</h2><p>其实大学四年我学的东西太少了，开发方面，只学了三四门课吧，Java基础、数据库操作、Java Web（JSP）、还有SSH框架，尤其是Java开发方面，用的都是老的不能再老的技术。去年夏天的时候就了解到Spring Boot，很有兴趣，主要是被它一直强调的简单易用、快速开发的特点吸引了。但其实对于我这种半吊子来说，尤其是没什么开发经验的，用啥技术一开始都是很难的。Spring Boot其实是一个承载者，里面继承了Spring、Spring　MVC等框架，你可以用Spring Boot快速地搭建一个包含这些框架地脚手架。</p>
-<p>当然只有Spring Boot开发一个系统开始难的，一直以来都听说前后端分离，但是也没有仔细地了解过什么是前后端分离，还有VUE框架，只听名字会觉得这个框架应该很轻量，很简单，但是了解了一下发现它不太适合现在的我，哈哈什么MVVM和双向绑定，以后有机会再了解。</p>
-<p>一开始是选择用Thymeleaf的，类似于JSP的模板引擎，但是觉得这样实在是没有什么进步，所以后来改用了LayUI，然后数据交互都放在JS文件中用Ajax来做，算是一次成长吧，之前用的技术都太简单了，嘲笑自己。</p>
-<p>数据库的话还是MySql，学的是这个，现在大家用的也是这个，然后持久化框架之前只学过Hibernate，但是现在网上见到的项目基本都是SSM，所以说MyBatis我也想了解一下，所以这次就用MyBatis吧。</p>
-<p>之前在知乎上看过一个名叫【微人事】的Spring Boot项目，后来也在Github看到了，虽然FORK了，但是却从来没提交过，哈哈。里面提到了“权限管理”这个词，觉得有点高端，后来了解到了Shiro和Spring Security这两个安全框架，才知道权限管理究竟是怎么做的，这次虽然是个博客系统，但是也想加进去，增加自己的经验。</p>
-<p>所以初步的技术选型就是：<strong>Spring Boot、Layui、Spring Securiy、MyBatis</strong>这些，至于后来又加进去的那些工具型的框架，后面的文章再说吧。</p>
-<p>文章中提到的一些链接：<br>微人事：<a href="https://github.com/lenve/vhr" target="_blank" rel="noopener">https://github.com/lenve/vhr</a><br>Layui：<a href="https://www.layui.com/" target="_blank" rel="noopener">https://www.layui.com/</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/" data-id="ckakll6ox000nd8tfax5547c8" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-Spring Boot学习总结Day1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/02/05/Spring%20Boot%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93Day1/" class="article-date">
-  <time datetime="2020-02-04T16:39:05.000Z" itemprop="datePublished">2020-02-05</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/02/05/Spring%20Boot%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93Day1/">Spring Boot学习总结Day1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>博客已经闲置了很久了，这段时间我的学业基本上没有什么进步，学到的知识也很少。趁着寒假这段最后的空闲时光，学习一下Spring Boot，争取开学之前把博客系统做出来。</p>
-<h1 id="注解配置Spring-IoC"><a href="#注解配置Spring-IoC" class="headerlink" title="注解配置Spring IoC"></a>注解配置Spring IoC</h1><h2 id="1-使用-Bean装配"><a href="#1-使用-Bean装配" class="headerlink" title="1.使用@Bean装配"></a>1.使用@Bean装配</h2><p>先创建一个Bean类——User</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.springboot.chapter2.beans;
-
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
-    <span class="hljs-keyword">private</span> Long id;
-    <span class="hljs-keyword">private</span> String userName;
-    <span class="hljs-keyword">private</span> String note;
-
-&#125;</code></pre>
-
-<p>再创建一个配置文件——AppCofig</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppConfig</span></span>&#123;
-    <span class="hljs-meta">@Bean</span>(name = <span class="hljs-string">"user"</span>)<span class="hljs-comment">//"user"作为bean的名称</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> User <span class="hljs-title">initUser</span><span class="hljs-params">()</span></span>&#123;
-        User user = <span class="hljs-keyword">new</span> User();
-        user.setId(<span class="hljs-number">1L</span>);
-        user.setUserName(<span class="hljs-string">"lwq"</span>);
-        user.setNote(<span class="hljs-string">"NiuZi"</span>);
-        <span class="hljs-keyword">return</span> user;
-    &#125;
-&#125;</code></pre>
-
-<p>最后就可以在主类中使用了。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">IoCTest</span> </span>&#123;
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> Logger log = Logger.getLogger(IoCTest<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
-
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">main</span><span class="hljs-params">(String[] args)</span> </span>&#123;
-        ApplicationContext ctx = <span class="hljs-keyword">new</span> AnnotationConfigApplicationContext(AppConfig<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
-        User user = (User) ctx.getBean(User<span class="hljs-class">.<span class="hljs-keyword">class</span>)</span>;
-        log.info(user.getNote());
-    &#125;
-&#125;</code></pre>
-
-<h2 id="2-使用扫描装配Bean"><a href="#2-使用扫描装配Bean" class="headerlink" title="2.使用扫描装配Bean"></a>2.使用扫描装配Bean</h2><p>使用@Component和@ComponentScan来装配Bean，能够以包为单位进行Bean的装配</p>
-<p>首先创建Bean类——User</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.springboot.chapter2.beans;
-
-<span class="hljs-keyword">import</span> org.springframework.beans.factory.annotation.Value;
-<span class="hljs-keyword">import</span> org.springframework.stereotype.Component;
-
-<span class="hljs-meta">@Component</span>(<span class="hljs-string">"user"</span>)
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">User</span> </span>&#123;
-    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"1"</span>)
-    <span class="hljs-keyword">private</span> Long id;
-    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"user_name_1"</span>)
-    <span class="hljs-keyword">private</span> String userName;
-    <span class="hljs-meta">@Value</span>(<span class="hljs-string">"note_1"</span>)
-    <span class="hljs-keyword">private</span> String note;
-
-&#125;</code></pre>
-
-<p>然后创建配置文件——AppConfig</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@ComponentScan</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">AppConfig</span></span>&#123;&#125;</code></pre>
-
-<p>将User类和AppConfig放在同一个包下，AppConfig就会自动装配其所在包中添加了@Component注解的Bean类</p>
-<h2 id="3-自定义扫描规则"><a href="#3-自定义扫描规则" class="headerlink" title="3.自定义扫描规则"></a>3.自定义扫描规则</h2><p>将配置文件和Bean类放在他用一个包下显然不够合理，使用@ComponentScan注解的配置项，能够帮助我们自定义扫描的规则，即使是不同的包也能扫描，还能进行一些过滤。</p>
-<p>在AppConfig的包的同一层，创建一个services包，其中添加一个UserService类，并为其添加一个@Service注释，这样在正常的扫描规则下，@Service类是会被扫描并装载的。</p>
-<p>UserService类</p>
-<pre><code class="hljs java"><span class="hljs-keyword">package</span> com.springboot.chapter2.services;
-
-<span class="hljs-keyword">import</span> com.springboot.chapter2.beans.User;
-<span class="hljs-keyword">import</span> org.springframework.stereotype.Service;
-
-<span class="hljs-meta">@Service</span>
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">UserService</span> </span>&#123;
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">printUser</span><span class="hljs-params">(User user)</span> </span>&#123;
-        System.out.println(user.getId());
-        System.out.println(user.getUserName());
-        System.out.println(user.getNote());
-    &#125;
-&#125;</code></pre>
-
-<p>这时我们需要修改AppConfig中的扫描规则</p>
-<pre><code class="hljs java"><span class="hljs-meta">@Configuration</span>
-<span class="hljs-meta">@ComponentScan</span>(basePackages = <span class="hljs-string">"com.springboot.chapter2.*"</span>,
-        excludeFilters = &#123;<span class="hljs-meta">@Filter</span>(classes = &#123;Service<span class="hljs-class">.<span class="hljs-keyword">class</span>&#125;)&#125;)</span>
-<span class="hljs-class"><span class="hljs-title">public</span> <span class="hljs-title">class</span> <span class="hljs-title">AppConfig</span></span>&#123;&#125;</code></pre>
-
-<p>这样就会在扫描时，过滤掉chapter包中所有的Service类</p>
-<h2 id="4-问题总结"><a href="#4-问题总结" class="headerlink" title="4.问题总结"></a>4.问题总结</h2><h3 id="（1）注解结尾不需要加分号"><a href="#（1）注解结尾不需要加分号" class="headerlink" title="（1）注解结尾不需要加分号"></a>（1）注解结尾不需要加分号</h3><p>由于是太久没写代码，居然忘了注解后是不需要加分号的</p>
-<p>错误示例：@Component(“user”)；</p>
-<h3 id="（2）log4j版本问题"><a href="#（2）log4j版本问题" class="headerlink" title="（2）log4j版本问题"></a>（2）log4j版本问题</h3><p>今天看书上的示例代码，使用log4j作为日志模块，但是在Maven加载依赖的时候，一直找不到对应的包，经过一番搜索，才找到比较常见的版本</p>
-<pre><code class="hljs xml">  <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  
-  <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>log4j<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  
-  <span class="hljs-tag">&lt;<span class="hljs-name">version</span>&gt;</span>1.2.15<span class="hljs-tag">&lt;/<span class="hljs-name">version</span>&gt;</span>  
-  <span class="hljs-tag">&lt;<span class="hljs-name">exclusions</span>&gt;</span>  
-    <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.mail<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>mail<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  
-    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span>  
-    <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>javax.jms<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jms<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  
-    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span>  
-    <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sun.jdmk<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jmxtools<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  
-    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span>  
-    <span class="hljs-tag">&lt;<span class="hljs-name">exclusion</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">groupId</span>&gt;</span>com.sun.jmx<span class="hljs-tag">&lt;/<span class="hljs-name">groupId</span>&gt;</span>  
-      <span class="hljs-tag">&lt;<span class="hljs-name">artifactId</span>&gt;</span>jmxri<span class="hljs-tag">&lt;/<span class="hljs-name">artifactId</span>&gt;</span>  
-    <span class="hljs-tag">&lt;/<span class="hljs-name">exclusion</span>&gt;</span>  
-  <span class="hljs-tag">&lt;/<span class="hljs-name">exclusions</span>&gt;</span>  
-  <span class="hljs-tag">&lt;<span class="hljs-name">scope</span>&gt;</span>compile<span class="hljs-tag">&lt;/<span class="hljs-name">scope</span>&gt;</span>  
-<span class="hljs-tag">&lt;/<span class="hljs-name">dependency</span>&gt;</span></code></pre>
-
-<h3 id="（3）log42的配置问题"><a href="#（3）log42的配置问题" class="headerlink" title="（3）log42的配置问题"></a>（3）log42的配置问题</h3><pre><code class="hljs plain">log4j:WARN Please initialize the log4j system properly.
-log4j:WARN No appenders could be found for logger (com.netease.qa.testng.TestngRetry).</code></pre>
-
-<p>今天遇到了一个类似的异常，原来是没有为log4j添加log4j.properties。</p>
-<p>如果是普通项目，那么就放在src目录下；</p>
-<p>如果是maven项目，那么就放在resources目录中。</p>
-<p>正确的文件内容：</p>
-<pre><code class="hljs plain">
-log4j.rootLogger&#x3D;debug, stdout, R
-log4j.appender.stdout&#x3D;org.apache.log4j.ConsoleAppender
-log4j.appender.stdout.layout&#x3D;org.apache.log4j.PatternLayout
-
-log4j.appender.stdout.layout.ConversionPattern&#x3D;%5p - %m%n
-
-log4j.appender.R&#x3D;org.apache.log4j.RollingFileAppender
-log4j.appender.R.File&#x3D;firestorm.log
-
-log4j.appender.R.MaxFileSize&#x3D;100KB
-log4j.appender.R.MaxBackupIndex&#x3D;1
-
-log4j.appender.R.layout&#x3D;org.apache.log4j.PatternLayout
-log4j.appender.R.layout.ConversionPattern&#x3D;%p %t %c - %m%n
-
-log4j.logger.com.codefutures&#x3D;DEBUG</code></pre>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2020/02/05/Spring%20Boot%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93Day1/" data-id="ckakll6oh0001d8tf8bwx3y8w" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-琐碎知识总结（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/29/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
-  <time datetime="2019-05-29T13:52:50.000Z" itemprop="datePublished">2019-05-29</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/29/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">琐碎知识总结（一）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、Enumeration"><a href="#一、Enumeration" class="headerlink" title="一、Enumeration"></a>一、Enumeration</h2><p>Enumeration是一个枚举类，提供了遍历Vector和HashTable类型集合元素的功能，不支持元素的移除操作。一般就是用来存放需要遍历的一组数据，比如网页中request、response对象存储的变量名，借此来遍历数据。</p>
-<pre><code class="hljs java">T bean = clazz.newInstance();
-Enumeration&lt;String&gt; e = request.getParameterNames();
-<span class="hljs-keyword">while</span> (e.hasMoreElements())&#123;
-    String name = e.nextElement();
-    String value = request.getParameter(name);
-    BeanUtils.setProperty(bean,name,value);
-&#125;
-<span class="hljs-keyword">return</span> bean;</code></pre>
-
-<p>上面这组代码就是利用Enumeration和BeanUtils的setProperty方法将request中的数据对存放到了bean中</p>
-<h2 id="二、UUID"><a href="#二、UUID" class="headerlink" title="二、UUID"></a>二、UUID</h2><p>UUID是 通用唯一识别码（Universally Unique Identifier）的缩写，再Java中经常需要用为很多数据设置单一的识别码，例如用户、学生等等</p>
-<p>再java中，java.util.UUID这个包就是用来生成UUID的。</p>
-<pre><code class="hljs java"><span class="hljs-keyword">for</span>(<span class="hljs-keyword">int</span> i=<span class="hljs-number">0</span>;i&lt;<span class="hljs-number">10</span>;i++)&#123;
-    String uuid = UUID.randomUUID().toString().replaceAll(<span class="hljs-string">"-"</span>, <span class="hljs-string">""</span>);
-    System.out.println(uuid);
-&#125;</code></pre>
-<p>上面这组代码生成了是个唯一的UUID，并且去掉了UUID中的“-”。</p>
-<h2 id="三、matches（）方法"><a href="#三、matches（）方法" class="headerlink" title="三、matches（）方法"></a>三、matches（）方法</h2><p>java.lang包中的String类和java.util.regex包中的Pattern，Matcher类中都有matches()方法，都与正则表达式有关。<br>主要是判断是否符合参数中的正则表达式，现在我对正则表达式几乎处于一窍不通的状态，所以现在这个方法主要是知道是干什么的就好，不要对读代码产生障碍。</p>
-<h2 id="四、SAXReader"><a href="#四、SAXReader" class="headerlink" title="四、SAXReader"></a>四、SAXReader</h2><p>SAXReader并不是java标准包里的方法，它来自dom4j-full.jar包，需要自行下载导入，并且是开源免费的。<br>SAXReader主要是用来读取XML文档，但是我现在对XML也还是一知半解，所以仅作了解。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2019/05/29/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckakll6on0008d8tffe78b40y" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-React学习问题纪录(一)" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/05/25/React%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%BA%AA%E5%BD%95(%E4%B8%80)/" class="article-date">
-  <time datetime="2019-05-25T09:36:45.000Z" itemprop="datePublished">2019-05-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/05/25/React%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%BA%AA%E5%BD%95(%E4%B8%80)/">React学习问题纪录(一)</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="npm-run-eject失败"><a href="#npm-run-eject失败" class="headerlink" title="npm run eject失败"></a>npm run eject失败</h2><p>这个命令是为了暴露出react项目脚手架的一些重要的配置文件.一开始跟教程的时候我没做,现在需要引入less,却发现提示了一个错误</p>
-<pre><code class="hljs plain">Remove untracked files, stash or commit any changes, and try again.
-npm ERR! code ELIFECYCLE
-npm ERR! errno 1
-npm ERR! react-single-1@0.1.0 eject: &#96;react-scripts eject&#96;
-npm ERR! Exit status 1
-npm ERR!
-npm ERR! Failed at the react-single-1@0.1.0 eject script.
-npm ERR! This is probably not a problem with npm. There is likely additional logging output above.
-
-npm ERR! A complete log of this run can be found in:
-npm ERR!     D:\Nodejs\npm_cache\_logs\2020-05-25T09_32_14_617Z-debug.log</code></pre>
-<p>上网搜了一下发现是因为我的git还没有提交,在vscode里提交以下就🆗了.</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2019/05/25/React%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%BA%AA%E5%BD%95(%E4%B8%80)/" data-id="ckand2p6y0000xgtfe3fz833k" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/yarn/" rel="tag">yarn</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-MVC初次学习总结" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/18/MVC%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="article-date">
-  <time datetime="2019-04-18T06:53:13.000Z" itemprop="datePublished">2019-04-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/18/MVC%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">MVC初次学习总结</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>已经一个多月没更新博客了，这一个月过的非常荒废，真应该好好反省一下。即使是放假或者忙别的事也应该保持总结自己学习经验的习惯。</p>
-<p>前两天利用周末把MVC开发模式学习了一下，按照网上的教程实现了一个简单的登陆系统的开发，具体的源码和思路在下一篇博客。<br>这篇博客主要总结一下学习过程中踩得两个坑。</p>
-<p>一、IDEA没有导入tomcat自带的servlet,jsp包<br>这是我第一次使用IDEA，在心间Servlet的时候发现了异常，Servlet本该自动import的各种包并没有导入，出现了很多报错。到网上一查原来是没有再IDEA导入tomcat自带的包<br>步骤：<br>1、右键项目<br><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g3iip18lp8j30g40ozac0.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>2、导入jar包<br><img src="https://cdn.sinaimg.cn.52ecy.cn/large/005BYqpgly1g3iiq2sim9j30yw0jzgnv.jpg" srcset="/img/loading.gif" alt=""></p>
-<p>二、利用注解方式配置Servlet<br>由于我看的教程是使用的Servlet2.5版本，并没注解配置这种方法，而我又太过于不求甚解，甚至没有上网查一下Servlet注解配置的用法，直接用了创建Servlet时默认的配置语句。</p>
-<pre><code class="hljs java"><span class="hljs-meta">@WebServlet</span>(name = <span class="hljs-string">"LogoutServlet"</span>）</code></pre>
-<p>其实这样只是配置了Servlet的映射名称，并没有配置具体路径。</p>
-<pre><code class="hljs plain">@WebServlet(name &#x3D; &quot;LogoutServlet&quot;,urlPatterns &#x3D; &quot;&#x2F;LogoutServlet&quot;)</code></pre>
-<p>才是正确的，具体更多的语法以后我还会再总结</p>
-<p>话说IDEA好像是不能像Eclipse一样直接打开某个页面（Servlet/jsp），部署之后只会默认打开主页，只能在地址栏中加上相应页面的映射地址才能直接访问那个页面吗，也可能是我还没发现吧。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2019/04/18/MVC%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" data-id="ckakll6oa0000d8tf9jmi2qdm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/MVC/" rel="tag">MVC</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-servlet疑惑总结（一）" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/servlet%E7%96%91%E6%83%91%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="article-date">
-  <time datetime="2019-04-14T08:13:29.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/servlet%E7%96%91%E6%83%91%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">servlet疑惑总结（一）</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="一、-pageContext-request-contextPath"><a href="#一、-pageContext-request-contextPath" class="headerlink" title="　一、${pageContext.request.contextPath}"></a>　一、${pageContext.request.contextPath}</h2><p>在学到使用Request获取Form表单提交的数据的时候，在Form的action属性中看到了“${pageContext.request.contextPath}”的表达式，查了一会才知道这属于EL表达式的一种写法：</p>
-<p>从get方法中获取数据：<br>pageContext.getRequest()得到HttpServletRequest对象，这是第一步，第二步是利用拿到的HttpServletRequest调用getContextPath方法。<br>作用：取出部署的应用程序名，这样不管如何部署，所用路径都是正确的。</p>
-<p>也就是说：<br><strong>${pageContext.request.contextPath} = &lt;%=request.getContextPath()%&gt; =“ /项目名称”</strong></p>
-<h2 id="二、href-”javascript-void-0-”"><a href="#二、href-”javascript-void-0-”" class="headerlink" title="二、href=”javascript:void(0);”"></a>二、href=”javascript:void(0);”</h2><p>href=”javascript:void(0);”这个的含义是，让超链接去执行一个js函数，而不是去跳转到一个地址，<br>而void(0)表示一个空的方法，也就是不执行js函数。</p>
-<p>javascript:是伪协议，表示url的内容通过javascript执行。void(0)表示不作任何操作，这样会防止链接跳转到其他页面。这么做往往是为了保留链接的样式，但不让链接执行实际操作，</p>
-<p>与之作用类似的是href=”#”但是这种方式会导致点击链接之后网页回到底部，href=”javascript:void(0);”则不会产生这种副作用</p>
-<pre><code class="hljs plain">&lt;a href&#x3D;&quot;javascript:void(0)&quot; onclick&#x3D;&quot;changeImage()&quot;&gt;看不清，换一张&lt;&#x2F;a&gt;</code></pre>
-<p>上面的代码就是这种方法的应用</p>
-<h2 id="三、request-getRemoteAddr-取得的是IPv6的地址格式"><a href="#三、request-getRemoteAddr-取得的是IPv6的地址格式" class="headerlink" title="三、request.getRemoteAddr()取得的是IPv6的地址格式"></a>三、request.getRemoteAddr()取得的是IPv6的地址格式</h2><p>request.getRemoteAddr()方法是用来取得客户端的IP地址的，目前来说我们都是使用IP V4的地址格式，但是我在将本机作为服务器的时候，取得的IP底值居然是0:0:0:0:0:0:0:1。</p>
-<p>于是我在网上查到了两种解决方法</p>
-<h5 id="1、修改hosts文件。位置：C-Windows-System32-drivers-etc"><a href="#1、修改hosts文件。位置：C-Windows-System32-drivers-etc" class="headerlink" title="1、修改hosts文件。位置：C:\Windows\System32\drivers\etc"></a>1、修改hosts文件。位置：C:\Windows\System32\drivers\etc</h5><p>删除或者注释掉 “ ::1 localhost”这一句，但是我的机器本来就是注释掉的，而且我取消掉了”127.0.0.1 localhost”也还是无济于事。</p>
-<h5 id="2、使用127-0-0-1代替localhost进行访问"><a href="#2、使用127-0-0-1代替localhost进行访问" class="headerlink" title="2、使用127.0.0.1代替localhost进行访问"></a>2、使用127.0.0.1代替localhost进行访问</h5><p>也就是在地址栏里将localhost手动换成127.0.0.1，这种方法虽然有效但是太麻烦了</p>
-<h5 id="3、让tomcat只支持IPv4"><a href="#3、让tomcat只支持IPv4" class="headerlink" title="3、让tomcat只支持IPv4"></a>3、让tomcat只支持IPv4</h5><p><strong>Run-&gt;Run Configurations…-&gt;Apache Tomcat-&gt;Tomcat v7.0 Server at localhost-&gt; Arguments-&gt;VM arguments</strong><br>在运行参数中添加：<code>-Djava.net.preferIPv4Stack=true</code><br>重启Tomcat在使用request.getRemoteAddr()方法就能得到IPv4的地址了<br>具体如图</p>
-<p><img src="https://ws3.sinaimg.cn/large/005BYqpgly1g229o80bxwj30u50se0v1.jpg" srcset="/img/loading.gif" alt=""></p>
-<h2 id="四、doGet-方法与doPost-方法以及get、post"><a href="#四、doGet-方法与doPost-方法以及get、post" class="headerlink" title="四、doGet()方法与doPost()方法以及get、post"></a>四、doGet()方法与doPost()方法以及get、post</h2><h5 id="1-form运行方式"><a href="#1-form运行方式" class="headerlink" title="1.form运行方式"></a>1.form运行方式</h5><p>当form框里面的method为get时，执行doGet方法<br>当form框里面的method为post时，执行doPost方法</p>
-<h5 id="2-生成方式"><a href="#2-生成方式" class="headerlink" title="2.生成方式"></a>2.生成方式</h5><p>get方式有四种：</p>
-<p>1）直接在URL地址栏中输入URL。</p>
-<p>2）网页中的超链接。</p>
-<p>3）form中method为get。</p>
-<p>4）form中method为空时，默认是get提交。</p>
-<p>post只知道有一种：</p>
-<p>form中method属性为post。</p>
-<h5 id="3，数据传送方式"><a href="#3，数据传送方式" class="headerlink" title="3，数据传送方式"></a>3，数据传送方式</h5><p>get方式：表单数据存放在URL地址后面。所有get方式提交时HTTP中没有消息体。</p>
-<p>post方式：表单数据存放在HTTP协议的消息体中以实体的方式传送到服务器。</p>
-<h5 id="4、服务器获取数据方式"><a href="#4、服务器获取数据方式" class="headerlink" title="4、服务器获取数据方式"></a>4、服务器获取数据方式</h5><p>GET方式：服务器采用request.QueryString来获取变量的值。</p>
-<p>POST方式：服务器采用request.Form来获取数据。</p>
-<h5 id="5、传送的数据量"><a href="#5、传送的数据量" class="headerlink" title="5、传送的数据量"></a>5、传送的数据量</h5><p>GET方式：数据量长度有限制，一般不超过2kb。因为是参数传递，且在地址栏中，故数据量有限制。</p>
-<p>POST方式：适合大规模的数据传送。因为是以实体的方式传送的。</p>
-<h5 id="6、安全性"><a href="#6、安全性" class="headerlink" title="6、安全性"></a>6、安全性</h5><p>GET方式：安全性差。因为是直接将数据显示在地址栏中，浏览器有缓冲，可记录用户信息。所以安全性低。</p>
-<p>POST方式：安全性高。因为post方式提交数据时是采用的HTTP post机制，是将表单中的字段与值放置在HTTP HEADER内一起传送到ACTION所指的URL中，用户是看不见的。</p>
-<h5 id="7、在用户刷新时"><a href="#7、在用户刷新时" class="headerlink" title="7、在用户刷新时"></a>7、在用户刷新时</h5><p>GET方式：不会有任何提示、</p>
-<p>POST方式：会弹出提示框，问用户是否重新提交。</p>
-<p>在做数据查询时，建议用Get方式；而在做数据添加、修改或删除时，建议用Post方式。</p>
-<p><strong>通常doPost()方法更强大一些，所以如果是Post请求，就直接重写doPost()方法就好了，</strong><br><strong>而如果是Get请求，也可以把方法体写在doPost()中，在doGet()中通过doPost(request,response);调用一下即可。</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2019/04/14/servlet%E7%96%91%E6%83%91%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" data-id="ckakll6oo000bd8tf3agigwjc" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-迅雷下载敏感资源" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/09/%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD%E6%95%8F%E6%84%9F%E8%B5%84%E6%BA%90/" class="article-date">
-  <time datetime="2019-04-09T05:26:42.000Z" itemprop="datePublished">2019-04-09</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%8A%80%E5%B7%A7/">日常技巧</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/09/%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD%E6%95%8F%E6%84%9F%E8%B5%84%E6%BA%90/">迅雷下载敏感资源</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>步骤一：打开 hosts，具体文件位置：C:\Windows\System32\drivers\etc\hosts。<br>步骤二：鼠标右键点击 hosts，打开方式选择「记事本」打开。<br>步骤三：别改里面的东西，直接在最后一排加上以下三行代码，保存即可。</p>
-<pre><code class="hljs plain">127.0.0.1 hub5btmain.sandai.net 
-127.0.0.1 hub5emu.sandai.net 
-127.0.0.1 upgrade.xl9.xunlei.com</code></pre>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2019/04/09/%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD%E6%95%8F%E6%84%9F%E8%B5%84%E6%BA%90/" data-id="ckakll6ow000kd8tf80mx8yyf" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E4%B8%8B%E8%BD%BD/" rel="tag">下载</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E8%BF%85%E9%9B%B7/" rel="tag">迅雷</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-servlet生成验证码" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/08/servlet%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" class="article-date">
-  <time datetime="2019-04-08T13:07:45.000Z" itemprop="datePublished">2019-04-08</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java-Web/">Java Web</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/08/servlet%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">servlet生成验证码</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天正式学习了自动生成验证码的方法，其中用到了从没有接触过的Color类、Graphics类等，做一下纪录。</p>
-<h2 id="一、创建一个DrawImage-Servlet，在服务器端生成验证码"><a href="#一、创建一个DrawImage-Servlet，在服务器端生成验证码" class="headerlink" title="一、创建一个DrawImage Servlet，在服务器端生成验证码"></a>一、创建一个DrawImage Servlet，在服务器端生成验证码</h2><pre><code class="hljs java"><span class="hljs-keyword">package</span> lwq.response.study;
-
-<span class="hljs-keyword">import</span> java.awt.Color;
-<span class="hljs-keyword">import</span> java.awt.Font;
-<span class="hljs-keyword">import</span> java.awt.Graphics;
-<span class="hljs-keyword">import</span> java.awt.Graphics2D;
-<span class="hljs-keyword">import</span> java.awt.image.BufferedImage;
-<span class="hljs-keyword">import</span> java.io.IOException;
-<span class="hljs-keyword">import</span> java.util.Random;
-
-<span class="hljs-keyword">import</span> javax.imageio.ImageIO;
-<span class="hljs-keyword">import</span> javax.servlet.ServletException;
-<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
-<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
-<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
-<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
-
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * Servlet implementation class DrawImage</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/DrawImage"</span>)
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DrawImage</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
-	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
-
-	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> WIDTH = <span class="hljs-number">120</span>;
-	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> HEIGHT = <span class="hljs-number">30</span>;
-
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * <span class="hljs-doctag">@see</span> HttpServlet#HttpServlet()</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DrawImage</span><span class="hljs-params">()</span> </span>&#123;
-		<span class="hljs-keyword">super</span>();
-		<span class="hljs-comment">// TODO Auto-generated constructor stub</span>
-	&#125;
-
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * <span class="hljs-doctag">@see</span> HttpServlet#doGet(HttpServletRequest request, HttpServletResponse</span>
-<span class="hljs-comment">	 *      response)</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span></span>
-<span class="hljs-function">			<span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
-		<span class="hljs-keyword">this</span>.doPost(request, response);
-	&#125;
-
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * <span class="hljs-doctag">@see</span> HttpServlet#doPost(HttpServletRequest request, HttpServletResponse</span>
-<span class="hljs-comment">	 *      response)</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span></span>
-<span class="hljs-function">			<span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
-		String createTypeFlag = request.getParameter(<span class="hljs-string">"createTypeFlag"</span>);<span class="hljs-comment">// 接受客户端传递的createTypeFlag标识</span>
-		<span class="hljs-comment">// 在内存中创建一张图片</span>
-		BufferedImage bi = <span class="hljs-keyword">new</span> BufferedImage(WIDTH, HEIGHT, BufferedImage.TYPE_INT_BGR);
-		<span class="hljs-comment">// 得到图片</span>
-		Graphics gra = bi.getGraphics();
-		<span class="hljs-comment">// 设置图片的背景色</span>
-		setBackGround(gra);
-		<span class="hljs-comment">// 画干扰线</span>
-		setRandomline(gra);
-		<span class="hljs-comment">// 设置边框 </span>
-		setBorder(gra);
-		<span class="hljs-comment">// 写随机数</span>
-		<span class="hljs-comment">//		String random = drawRandomNum((Graphics2D) gra, "ch");</span>
-		<span class="hljs-comment">//		String random = drawRandomNum((Graphics2D)gra, "n");</span>
-		<span class="hljs-comment">//		String random = drawRandomNum((Graphics2D)gra, "nl");</span>
-		<span class="hljs-comment">//		String random = drawRandomNum((Graphics2D)gra, "l");</span>
-		String random = drawRandomNum((Graphics2D) gra, createTypeFlag);<span class="hljs-comment">//根据客户端传递的createTypeFlag标识生成验证码图片</span>
-		<span class="hljs-comment">// 将随机数存在session中 </span>
-		request.getSession().setAttribute(<span class="hljs-string">"checkcode"</span>, random);
-		response.setContentType(<span class="hljs-string">"image/jpeg"</span>);<span class="hljs-comment">// 等同于response.setHeader("Content-Type", "image/jpeg");</span>
-		<span class="hljs-comment">// 设置响应头控制浏览器不要缓存</span>
-		response.setDateHeader(<span class="hljs-string">"expries"</span>, -<span class="hljs-number">1</span>);
-		response.setHeader(<span class="hljs-string">"Cache-Control"</span>, <span class="hljs-string">"no-cache"</span>);
-		response.setHeader(<span class="hljs-string">"Pragma"</span>, <span class="hljs-string">"no-cache"</span>);
-		<span class="hljs-comment">// 将图片写给浏览器</span>
-		ImageIO.write(bi, <span class="hljs-string">"jpg"</span>, response.getOutputStream());
-	&#125;
-
-	<span class="hljs-comment">/* 设置背景颜色 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBackGround</span><span class="hljs-params">(Graphics gra)</span> </span>&#123;
-		gra.setColor(Color.BLACK);
-		gra.fillRect(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, WIDTH, HEIGHT);
-	&#125;
-
-	<span class="hljs-comment">/*</span>
-<span class="hljs-comment">	 * 设置边框</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setBorder</span><span class="hljs-params">(Graphics gra)</span> </span>&#123;
-		gra.setColor(Color.BLUE);
-		gra.fillRect(<span class="hljs-number">1</span>, <span class="hljs-number">1</span>, WIDTH, HEIGHT);
-	&#125;
-
-	<span class="hljs-comment">/*</span>
-<span class="hljs-comment">	 * 设置随机干扰线</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">setRandomline</span><span class="hljs-params">(Graphics gra)</span> </span>&#123;
-		gra.setColor(Color.GREEN);
-		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++) &#123;
-			<span class="hljs-keyword">int</span> x1 = <span class="hljs-keyword">new</span> Random().nextInt(WIDTH);
-			<span class="hljs-keyword">int</span> y1 = <span class="hljs-keyword">new</span> Random().nextInt(HEIGHT);
-			<span class="hljs-keyword">int</span> x2 = <span class="hljs-keyword">new</span> Random().nextInt(WIDTH);
-			<span class="hljs-keyword">int</span> y2 = <span class="hljs-keyword">new</span> Random().nextInt(HEIGHT);
-			gra.drawLine(x1, y1, x2, y2);
-		&#125;
-	&#125;
-
-	<span class="hljs-comment">/* 生成随机字符 */</span>
-
-	<span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">drawRandomNum</span><span class="hljs-params">(Graphics2D gra, String... createTypeFlag)</span> </span>&#123;
-		gra.setColor(Color.RED);
-		gra.setFont(<span class="hljs-keyword">new</span> Font(<span class="hljs-string">"宋体"</span>, Font.BOLD, <span class="hljs-number">20</span>));
-		String baseNumLetter = <span class="hljs-string">"0123456789ABCDEFGHJKLMNOPQRSTUVWXYZ"</span>;
-		String baseChineseChar = <span class="hljs-string">"\u7684\u4e00\u4e86\u662f\u6211\u4e0d\u5728\u4eba\u4eec\u6709\u6765\u4ed6\u8fd9\u4e0a"</span>
-				+ <span class="hljs-string">"\u7740\u4e2a\u5730\u5230\u5927\u91cc\u8bf4\u5c31\u53bb\u5b50\u5f97\u4e5f\u548c\u90a3\u8981\u4e0b\u770b"</span>
-				+ <span class="hljs-string">"\u5929\u65f6\u8fc7\u51fa\u5c0f\u4e48\u8d77\u4f60\u90fd\u628a\u597d\u8fd8\u591a\u6ca1\u4e3a\u53c8\u53ef"</span>
-				+ <span class="hljs-string">"\u5bb6\u5b66\u53ea\u4ee5\u4e3b\u4f1a\u6837\u5e74\u60f3\u751f\u540c\u8001\u4e2d\u5341\u4ece\u81ea\u9762"</span>
-				+ <span class="hljs-string">"\u524d\u5934\u9053\u5b83\u540e\u7136\u8d70\u5f88\u50cf\u89c1\u4e24\u7528\u5979\u56fd\u52a8\u8fdb\u6210"</span>
-				+ <span class="hljs-string">"\u56de\u4ec0\u8fb9\u4f5c\u5bf9\u5f00\u800c\u5df1\u4e9b\u73b0\u5c71\u6c11\u5019\u7ecf\u53d1\u5de5\u5411"</span>
-				+ <span class="hljs-string">"\u4e8b\u547d\u7ed9\u957f\u6c34\u51e0\u4e49\u4e09\u58f0\u4e8e\u9ad8\u624b\u77e5\u7406\u773c\u5fd7\u70b9"</span>
-				+ <span class="hljs-string">"\u5fc3\u6218\u4e8c\u95ee\u4f46\u8eab\u65b9\u5b9e\u5403\u505a\u53eb\u5f53\u4f4f\u542c\u9769\u6253\u5462"</span>
-				+ <span class="hljs-string">"\u771f\u5168\u624d\u56db\u5df2\u6240\u654c\u4e4b\u6700\u5149\u4ea7\u60c5\u8def\u5206\u603b\u6761\u767d"</span>
-				+ <span class="hljs-string">"\u8bdd\u4e1c\u5e2d\u6b21\u4eb2\u5982\u88ab\u82b1\u53e3\u653e\u513f\u5e38\u6c14\u4e94\u7b2c\u4f7f\u5199"</span>
-				+ <span class="hljs-string">"\u519b\u5427\u6587\u8fd0\u518d\u679c\u600e\u5b9a\u8bb8\u5feb\u660e\u884c\u56e0\u522b\u98de\u5916\u6811"</span>
-				+ <span class="hljs-string">"\u7269\u6d3b\u90e8\u95e8\u65e0\u5f80\u8239\u671b\u65b0\u5e26\u961f\u5148\u529b\u5b8c\u5374\u7ad9\u4ee3"</span>
-				+ <span class="hljs-string">"\u5458\u673a\u66f4\u4e5d\u60a8\u6bcf\u98ce\u7ea7\u8ddf\u7b11\u554a\u5b69\u4e07\u5c11\u76f4\u610f\u591c"</span>
-				+ <span class="hljs-string">"\u6bd4\u9636\u8fde\u8f66\u91cd\u4fbf\u6597\u9a6c\u54ea\u5316\u592a\u6307\u53d8\u793e\u4f3c\u58eb\u8005"</span>
-				+ <span class="hljs-string">"\u5e72\u77f3\u6ee1\u65e5\u51b3\u767e\u539f\u62ff\u7fa4\u7a76\u5404\u516d\u672c\u601d\u89e3\u7acb\u6cb3"</span>
-				+ <span class="hljs-string">"\u6751\u516b\u96be\u65e9\u8bba\u5417\u6839\u5171\u8ba9\u76f8\u7814\u4eca\u5176\u4e66\u5750\u63a5\u5e94"</span>
-				+ <span class="hljs-string">"\u5173\u4fe1\u89c9\u6b65\u53cd\u5904\u8bb0\u5c06\u5343\u627e\u4e89\u9886\u6216\u5e08\u7ed3\u5757\u8dd1"</span>
-				+ <span class="hljs-string">"\u8c01\u8349\u8d8a\u5b57\u52a0\u811a\u7d27\u7231\u7b49\u4e60\u9635\u6015\u6708\u9752\u534a\u706b\u6cd5"</span>
-				+ <span class="hljs-string">"\u9898\u5efa\u8d76\u4f4d\u5531\u6d77\u4e03\u5973\u4efb\u4ef6\u611f\u51c6\u5f20\u56e2\u5c4b\u79bb\u8272"</span>
-				+ <span class="hljs-string">"\u8138\u7247\u79d1\u5012\u775b\u5229\u4e16\u521a\u4e14\u7531\u9001\u5207\u661f\u5bfc\u665a\u8868\u591f"</span>
-				+ <span class="hljs-string">"\u6574\u8ba4\u54cd\u96ea\u6d41\u672a\u573a\u8be5\u5e76\u5e95\u6df1\u523b\u5e73\u4f1f\u5fd9\u63d0\u786e"</span>
-				+ <span class="hljs-string">"\u8fd1\u4eae\u8f7b\u8bb2\u519c\u53e4\u9ed1\u544a\u754c\u62c9\u540d\u5440\u571f\u6e05\u9633\u7167\u529e"</span>
-				+ <span class="hljs-string">"\u53f2\u6539\u5386\u8f6c\u753b\u9020\u5634\u6b64\u6cbb\u5317\u5fc5\u670d\u96e8\u7a7f\u5185\u8bc6\u9a8c"</span>
-				+ <span class="hljs-string">"\u4f20\u4e1a\u83dc\u722c\u7761\u5174\u5f62\u91cf\u54b1\u89c2\u82e6\u4f53\u4f17\u901a\u51b2\u5408\u7834"</span>
-				+ <span class="hljs-string">"\u53cb\u5ea6\u672f\u996d\u516c\u65c1\u623f\u6781\u5357\u67aa\u8bfb\u6c99\u5c81\u7ebf\u91ce\u575a\u7a7a"</span>
-				+ <span class="hljs-string">"\u6536\u7b97\u81f3\u653f\u57ce\u52b3\u843d\u94b1\u7279\u56f4\u5f1f\u80dc\u6559\u70ed\u5c55\u5305\u6b4c"</span>
-				+ <span class="hljs-string">"\u7c7b\u6e10\u5f3a\u6570\u4e61\u547c\u6027\u97f3\u7b54\u54e5\u9645\u65e7\u795e\u5ea7\u7ae0\u5e2e\u5566"</span>
-				+ <span class="hljs-string">"\u53d7\u7cfb\u4ee4\u8df3\u975e\u4f55\u725b\u53d6\u5165\u5cb8\u6562\u6389\u5ffd\u79cd\u88c5\u9876\u6025"</span>
-				+ <span class="hljs-string">"\u6797\u505c\u606f\u53e5\u533a\u8863\u822c\u62a5\u53f6\u538b\u6162\u53d4\u80cc\u7ec6"</span>;
-		String baseNumber = <span class="hljs-string">"1234567890"</span>;
-		String baseLetter = <span class="hljs-string">"QWERTYUIOPASDGFHJKLZXCVBNM"</span>;
-		String str = createTypeFlag[<span class="hljs-number">0</span>];
-		<span class="hljs-keyword">if</span> (createTypeFlag.length &gt; <span class="hljs-number">0</span> &amp;&amp; str != <span class="hljs-keyword">null</span>) &#123;
-			<span class="hljs-keyword">if</span>(str.equals(<span class="hljs-string">"ch"</span>)) &#123;
-				<span class="hljs-keyword">return</span> createRandomChar(gra, baseChineseChar);
-			&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(str.equals(<span class="hljs-string">"n"</span>)) &#123;
-				<span class="hljs-keyword">return</span> createRandomChar(gra, baseNumber);
-			&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(str.equals(<span class="hljs-string">"l"</span>)) &#123;
-				<span class="hljs-keyword">return</span> createRandomChar(gra, baseLetter);
-			&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(str.equals(<span class="hljs-string">"nl"</span>))&#123;
-				<span class="hljs-keyword">return</span> createRandomChar(gra, baseNumLetter);
-			&#125;
-		&#125;<span class="hljs-keyword">else</span> &#123;
-			<span class="hljs-comment">//默认截取字母和数字的组合</span>
-			<span class="hljs-keyword">return</span> createRandomChar(gra, baseNumLetter);
-		&#125;
-		<span class="hljs-keyword">return</span> <span class="hljs-string">""</span>;
-	&#125;
-
-	<span class="hljs-comment">/* 创建随机字符 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">private</span> String <span class="hljs-title">createRandomChar</span><span class="hljs-params">(Graphics2D gra, String baseChar)</span> </span>&#123;
-		StringBuffer sb = <span class="hljs-keyword">new</span> StringBuffer();
-		<span class="hljs-keyword">int</span> x = <span class="hljs-number">5</span>;
-		String ch = <span class="hljs-string">""</span>;
-		<span class="hljs-keyword">for</span> (<span class="hljs-keyword">int</span> i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">4</span>; i++) &#123;
-			<span class="hljs-keyword">int</span> degree = <span class="hljs-keyword">new</span> Random().nextInt() % <span class="hljs-number">30</span>;
-			ch = baseChar.charAt(<span class="hljs-keyword">new</span> Random().nextInt(baseChar.length())) + <span class="hljs-string">""</span>;
-			sb.append(ch);
-
-			gra.rotate(degree * Math.PI / <span class="hljs-number">180</span>, x, <span class="hljs-number">20</span>);
-			gra.drawString(ch, x, <span class="hljs-number">20</span>);
-			gra.rotate(-degree * Math.PI / <span class="hljs-number">180</span>, x, <span class="hljs-number">20</span>);
-			x += <span class="hljs-number">30</span>;
-
-		&#125;
-		<span class="hljs-keyword">return</span> sb.toString();
-	&#125;
-&#125;</code></pre>
-<h2 id="二、创建-index-jsp-在客户端浏览器中利用Form表单使用验证码图片"><a href="#二、创建-index-jsp-在客户端浏览器中利用Form表单使用验证码图片" class="headerlink" title="二、创建 index.jsp 在客户端浏览器中利用Form表单使用验证码图片"></a>二、创建 index.jsp 在客户端浏览器中利用Form表单使用验证码图片</h2><pre><code class="hljs jsp">&lt;%@ page language=<span class="hljs-string">"java"</span> contentType=<span class="hljs-string">"text/html; charset=UTF-8"</span>
-	pageEncoding=<span class="hljs-string">"UTF-8"</span>%&gt;
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-&lt;meta charset=<span class="hljs-string">"UTF-8"</span>&gt;
-&lt;title&gt;Insert title here&lt;/title&gt;
-&lt;script type=<span class="hljs-string">"text/javascript"</span>&gt;
-	<span class="hljs-comment">//刷新验证码</span>
-	<span class="hljs-function">function <span class="hljs-title">changeImage</span><span class="hljs-params">()</span> </span>&#123;
-		document.getElementById(<span class="hljs-string">"verificationCodeImg"</span>).src = <span class="hljs-string">"$&#123;pageContext.request.contextPath&#125;/DrawImage?"</span>
-				+ Math.random();
-	&#125;
-&lt;/script&gt;
-&lt;/head&gt;
-&lt;body&gt;
-	&lt;form action=<span class="hljs-string">"$&#123;pageContext.request.contextPath&#125;/CheckServlet"</span>
-		method=<span class="hljs-string">"post"</span>&gt;
-		验证码：&lt;input type=<span class="hljs-string">"text"</span> name=<span class="hljs-string">"verificationCode"</span>&gt; &lt;img
-			alt=<span class="hljs-string">"看不清，换一张"</span>
-			src=<span class="hljs-string">"$&#123;pageContext.request.contextPath&#125;/DrawImage"</span>
-			id=<span class="hljs-string">"verificationCodeImg"</span> onclick=<span class="hljs-string">"changeImage()"</span>&gt; 
-			&lt;a href="javascript:void(0)" onclick="changeImage()"&gt;看不清，换一张&lt;/a&gt; &lt;br&gt;
-		&lt;input type=<span class="hljs-string">"submit"</span> value=<span class="hljs-string">"提交"</span>&gt;
-	&lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-<h2 id="三、创建CheckServlet服务器端对form表单提交上来的验证码处理"><a href="#三、创建CheckServlet服务器端对form表单提交上来的验证码处理" class="headerlink" title="三、创建CheckServlet服务器端对form表单提交上来的验证码处理"></a>三、创建CheckServlet服务器端对form表单提交上来的验证码处理</h2><pre><code class="hljs java"><span class="hljs-keyword">package</span> lwq.response.study;
-
-<span class="hljs-keyword">import</span> java.io.IOException;
-<span class="hljs-keyword">import</span> javax.servlet.ServletException;
-<span class="hljs-keyword">import</span> javax.servlet.annotation.WebServlet;
-<span class="hljs-keyword">import</span> javax.servlet.http.HttpServlet;
-<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletRequest;
-<span class="hljs-keyword">import</span> javax.servlet.http.HttpServletResponse;
-
-<span class="hljs-comment">/**</span>
-<span class="hljs-comment"> * Servlet implementation class CheckServlet</span>
-<span class="hljs-comment"> */</span>
-<span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">"/CheckServlet"</span>)
-<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CheckServlet</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;
-	<span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">long</span> serialVersionUID = <span class="hljs-number">1L</span>;
-       
-    <span class="hljs-comment">/**</span>
-<span class="hljs-comment">     * <span class="hljs-doctag">@see</span> HttpServlet#HttpServlet()</span>
-<span class="hljs-comment">     */</span>
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CheckServlet</span><span class="hljs-params">()</span> </span>&#123;
-        <span class="hljs-keyword">super</span>();
-        <span class="hljs-comment">// TODO Auto-generated constructor stub</span>
-    &#125;
-
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * <span class="hljs-doctag">@see</span> HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doGet</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
-		String clientCheckcode = request.getParameter(<span class="hljs-string">"verificationCode"</span>);<span class="hljs-comment">//接受客户端浏览器传入的验证码</span>
-		String serverCheckcode = (String)request.getSession().getAttribute(<span class="hljs-string">"checkcode"</span>);<span class="hljs-comment">//从服务器端的session中取出验证码，这里的checkcode是在DrawImage类中存入的属性值</span>
-		<span class="hljs-keyword">if</span>(clientCheckcode.equals(serverCheckcode)) &#123;
-			System.out.println(<span class="hljs-string">"通过！"</span>);
-		&#125;<span class="hljs-keyword">else</span> &#123;
-			System.out.println(<span class="hljs-string">"失败！"</span>);
-		&#125;
-		
-	&#125;
-
-	<span class="hljs-comment">/**</span>
-<span class="hljs-comment">	 * <span class="hljs-doctag">@see</span> HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)</span>
-<span class="hljs-comment">	 */</span>
-	<span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">doPost</span><span class="hljs-params">(HttpServletRequest request, HttpServletResponse response)</span> <span class="hljs-keyword">throws</span> ServletException, IOException </span>&#123;
-		<span class="hljs-comment">// TODO Auto-generated method stub</span>
-		doGet(request, response);
-	&#125;
-
-&#125;</code></pre>
-
-<h2 id="四、其他说明"><a href="#四、其他说明" class="headerlink" title="四、其他说明"></a>四、其他说明</h2><p>在index.jsp中</p>
-<pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">changeImage</span>(<span class="hljs-params"></span>) </span>&#123;
-		<span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">"verificationCodeImg"</span>).src = <span class="hljs-string">"$&#123;pageContext.request.contextPath&#125;/DrawImage?"</span>
-				+ <span class="hljs-built_in">Math</span>.random();
-	&#125;</code></pre>
-
-<p>在末尾加Math.random()的作用：<br>如果两次请求地址一样，服务器只会处理第一次请求，第二次请求返回内容和第一次一样。或者说如果地址相同，第一次请求时，将自动缓存，导致第二次不会重复请求了。Math.random()是调用javascript语法中的数学函数，能够产生随机数。<br>末尾加Math.random()使每次请求地址不相同，服务器每次都去做不同的响应。也可以使用new date()时间戳的形式作为参数传递。</p>
-<p>学习参考的博客是博客园大神“孤傲苍狼”的博客——<a href="https://www.cnblogs.com/xdp-gacl/p/3798190.html" target="_blank" rel="noopener">https://www.cnblogs.com/xdp-gacl/p/3798190.html</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://wtsclwq.github.io/2019/04/08/servlet%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" data-id="ckakll6ok0003d8tfas7y6i5l" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" rel="tag">验证码</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-
-
-  <nav id="page-nav">
-    
-    <a class="extend prev" rel="prev" href="/">&amp;laquo; 上一页</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">下一页 &amp;raquo;</a>
-  </nav>
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">分类</h3>
-    <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%8A%80%E5%B7%A7/">日常技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9A%8F%E7%AC%94-%E6%91%98%E6%8A%84/">随笔&摘抄</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签</h3>
-    <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger/" rel="tag">Swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yarn/" rel="tag">yarn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8B%E8%BD%BD/" rel="tag">下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%91%98%E6%8A%84/" rel="tag">摘抄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" rel="tag">系统调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" rel="tag">路由器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%85%E9%9B%B7/" rel="tag">迅雷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" rel="tag">验证码</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">标签云</h3>
-    <div class="widget tagcloud">
-      <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Servlet/" style="font-size: 16.67px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a> <a href="/tags/%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">下载</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">云服务器</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 10px;">总结</a> <a href="/tags/%E6%8C%87%E4%BB%A4/" style="font-size: 20px;">指令</a> <a href="/tags/%E6%91%98%E6%8A%84/" style="font-size: 10px;">摘抄</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" style="font-size: 10px;">系统调用</a> <a href="/tags/%E7%BE%8E%E5%8C%96/" style="font-size: 10px;">美化</a> <a href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" style="font-size: 10px;">路由器</a> <a href="/tags/%E8%BF%85%E9%9B%B7/" style="font-size: 10px;">迅雷</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" style="font-size: 13.33px;">验证码</a>
-    </div>
-  </div>
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2020/05/28/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90/">Linux系统变成：循环创建子进程分析</a>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/">
+              <i class="iconfont icon-home-fill"></i>
+              首页</a>
           </li>
         
-          <li>
-            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E7%BB%84%E7%AE%A1%E7%90%86/">Linux学习记录（六）组管理</a>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/archives/">
+              <i class="iconfont icon-archive-fill"></i>
+              归档</a>
           </li>
         
-          <li>
-            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%B1%BB/">Linux学习记录（五）实用指令：压缩和解压类.md</a>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/categories/">
+              <i class="iconfont icon-category-fill"></i>
+              分类</a>
           </li>
         
-          <li>
-            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BB/">Linux学习记录（四）实用指令：搜索查找类</a>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/tags/">
+              <i class="iconfont icon-tags-fill"></i>
+              标签</a>
           </li>
         
-          <li>
-            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/">Linux学习记录（三）实用指令：时间日期类</a>
+          
+          
+          
+          <li class="nav-item">
+            <a class="nav-link" href="/about/">
+              <i class="iconfont icon-user-fill"></i>
+              关于</a>
+          </li>
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
+                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
           </li>
         
       </ul>
     </div>
   </div>
+</nav>
 
-  
-</aside>
+    <div class="view intro-2" id="background" parallax=true
+         style="background: url('/img/banner/5.jpg') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="container text-center white-text fadeInUp">
+            <span class="h2" id="subtitle">
+              
+            </span>
+
+            
+          </div>
+
+          
+            <div class="scroll-down-bar">
+              <i class="iconfont icon-arrowdown"></i>
+            </div>
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-md">
+        <div class="py-5" id="board"
+          style=margin-top:0>
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" target="_self">
+          <img src="http://lwqlearn-blog.test.upcdn.net/blog/silhouette-4939371_1920.jpg" srcset="/img/loading.gif" alt="项目总结（二） 数据库和接口设计">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">项目总结（二） 数据库和接口设计</a>
+
+      <a href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、概述其实关于项目构建的顺序和步骤一直都有点迷糊，虽然软件工程这门课也学了，但是到了具体的 web 项目上却有点手足无措，不知道从何做起，借鉴了其他博主的文章，于是就有了这次的数据库和接口设计，当然内容方面也有借鉴（厚脸皮）。
+2、数据表（1）要哪些表其实无论什么系统，都少不了的要有访问和日志纪录，虽然不会有什么人看，哈哈。基本的还应该有文章信息表、文章内容表（为什么分开后面说）、分类表、用户表</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-05-13
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Spring-Boot/">Spring Boot</a>
+            
+          </div>
         
       </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2020 John Doe<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
-</footer>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/" target="_self">
+          <img src="/img/test.jpg" srcset="/img/loading.gif" alt="折腾了一整天的美化，有一些心得">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/">折腾了一整天的美化，有一些心得</a>
+
+      <a href="/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/" class="index-excerpt">
+        
+        
+          
+        
+        <div>1、起因闲来无事酷安，偶然间看到有人在刷语雀的推广码，就点进去看了一下，发现 UI 和功能都很能打动我，遂注册登录下载，然后去知乎搜了一下看看大家都怎么看语雀，还是好评居多。又碰巧瞥到了一个 hexo 与语雀结合的案例，并且用 Travis CI 进行自动更新，真是太香了啊，开整。
+2、过程从八点钟开始折腾了一晚上，先装了 Ruby，再装 Msys2，结果到最后还是装不上 Travis，一直到后半</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-05-12
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/hexo/">hexo</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/hexo/">hexo</a>
+            
+              <a href="/tags/%E7%BE%8E%E5%8C%96/">美化</a>
+            
+          </div>
+        
+      </div>
     </div>
-    <nav id="mobile-nav">
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/" target="_self">
+          <img src="https://raw.githubusercontent.com/wtsclwq/pictures/master/img/silhouette-4939371_1920.jpg" srcset="/img/loading.gif" alt="项目总结（一） 关于Web项目架构的思考">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/">项目总结（一） 关于Web项目架构的思考</a>
+
+      <a href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/" class="index-excerpt">
+        
+        
+          
+        
+        <div>什么项目这次做的是一个博客系统，其实一直都挺想做一个属于自己的博客系统，现在的这个博客是用Github的搭的，用的都是网上的主题，自己也一知半解，虽然很好看，哈哈。
+选了啥技术其实大学四年我学的东西太少了，开发方面，只学了三四门课吧，Java基础、数据库操作、Java Web（JSP）、还有SSH框架，尤其是Java开发方面，用的都是老的不能再老的技术。去年夏天的时候就了解到Spring Boot</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-04-30
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Spring-Boot/">Spring Boot</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2020/02/05/Spring%20Boot%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93Day1/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="Spring Boot学习总结Day1">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2020/02/05/Spring%20Boot%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93Day1/">Spring Boot学习总结Day1</a>
+
+      <a href="/2020/02/05/Spring%20Boot%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93Day1/" class="index-excerpt">
+        
+        
+          
+        
+        <div>博客已经闲置了很久了，这段时间我的学业基本上没有什么进步，学到的知识也很少。趁着寒假这段最后的空闲时光，学习一下Spring Boot，争取开学之前把博客系统做出来。
+注解配置Spring IoC1.使用@Bean装配先创建一个Bean类——User
+package com.springboot.chapter2.beans;
+
+public class User &#123;
+    priva</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2020-02-05
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Spring-Boot/">Spring Boot</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/05/29/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="琐碎知识总结（一）">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/05/29/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">琐碎知识总结（一）</a>
+
+      <a href="/2019/05/29/%E7%90%90%E7%A2%8E%E7%9F%A5%E8%AF%86%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="index-excerpt">
+        
+        
+          
+        
+        <div>一、EnumerationEnumeration是一个枚举类，提供了遍历Vector和HashTable类型集合元素的功能，不支持元素的移除操作。一般就是用来存放需要遍历的一组数据，比如网页中request、response对象存储的变量名，借此来遍历数据。
+T bean = clazz.newInstance();
+Enumeration&lt;String&gt; e = request.ge</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-29
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E6%80%BB%E7%BB%93/">总结</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/05/25/React%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%BA%AA%E5%BD%95(%E4%B8%80)/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="React学习问题纪录(一)">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/05/25/React%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%BA%AA%E5%BD%95(%E4%B8%80)/">React学习问题纪录(一)</a>
+
+      <a href="/2019/05/25/React%E5%AD%A6%E4%B9%A0%E9%97%AE%E9%A2%98%E7%BA%AA%E5%BD%95(%E4%B8%80)/" class="index-excerpt">
+        
+        
+          
+        
+        <div>npm run eject失败这个命令是为了暴露出react项目脚手架的一些重要的配置文件.一开始跟教程的时候我没做,现在需要引入less,却发现提示了一个错误
+Remove untracked files, stash or commit any changes, and try again.
+npm ERR! code ELIFECYCLE
+npm ERR! errno 1
+npm ERR! </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-05-25
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E5%89%8D%E7%AB%AF/">前端</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/React/">React</a>
+            
+              <a href="/tags/npm/">npm</a>
+            
+              <a href="/tags/yarn/">yarn</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/04/18/MVC%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="MVC初次学习总结">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/04/18/MVC%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/">MVC初次学习总结</a>
+
+      <a href="/2019/04/18/MVC%E5%88%9D%E6%AC%A1%E5%AD%A6%E4%B9%A0%E6%80%BB%E7%BB%93/" class="index-excerpt">
+        
+        
+          
+        
+        <div>已经一个多月没更新博客了，这一个月过的非常荒废，真应该好好反省一下。即使是放假或者忙别的事也应该保持总结自己学习经验的习惯。
+前两天利用周末把MVC开发模式学习了一下，按照网上的教程实现了一个简单的登陆系统的开发，具体的源码和思路在下一篇博客。这篇博客主要总结一下学习过程中踩得两个坑。
+一、IDEA没有导入tomcat自带的servlet,jsp包这是我第一次使用IDEA，在心间Servlet的时</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-04-18
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Servlet/">Servlet</a>
+            
+              <a href="/tags/MVC/">MVC</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/04/14/servlet%E7%96%91%E6%83%91%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="servlet疑惑总结（一）">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/04/14/servlet%E7%96%91%E6%83%91%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">servlet疑惑总结（一）</a>
+
+      <a href="/2019/04/14/servlet%E7%96%91%E6%83%91%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/" class="index-excerpt">
+        
+        
+          
+        
+        <div>　一、${pageContext.request.contextPath}在学到使用Request获取Form表单提交的数据的时候，在Form的action属性中看到了“${pageContext.request.contextPath}”的表达式，查了一会才知道这属于EL表达式的一种写法：
+从get方法中获取数据：pageContext.getRequest()得到HttpServletRequ</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-04-14
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Servlet/">Servlet</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/04/09/%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD%E6%95%8F%E6%84%9F%E8%B5%84%E6%BA%90/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="迅雷下载敏感资源">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/04/09/%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD%E6%95%8F%E6%84%9F%E8%B5%84%E6%BA%90/">迅雷下载敏感资源</a>
+
+      <a href="/2019/04/09/%E8%BF%85%E9%9B%B7%E4%B8%8B%E8%BD%BD%E6%95%8F%E6%84%9F%E8%B5%84%E6%BA%90/" class="index-excerpt">
+        
+        
+          
+        
+        <div>步骤一：打开 hosts，具体文件位置：C:\Windows\System32\drivers\etc\hosts。步骤二：鼠标右键点击 hosts，打开方式选择「记事本」打开。步骤三：别改里面的东西，直接在最后一排加上以下三行代码，保存即可。
+127.0.0.1 hub5btmain.sandai.net 
+127.0.0.1 hub5emu.sandai.net 
+127.0.0.1 upgr</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-04-09
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%97%A5%E5%B8%B8%E6%8A%80%E5%B7%A7/">日常技巧</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E8%BF%85%E9%9B%B7/">迅雷</a>
+            
+              <a href="/tags/%E4%B8%8B%E8%BD%BD/">下载</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/04/08/servlet%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" target="_self">
+          <img src="/img/aritcle_default.jpg" srcset="/img/loading.gif" alt="servlet生成验证码">
+        </a>
+      </div>
+    
+    <div class="col-12 col-md-8 mx-auto index-info">
+      <a class="index-header" href="/2019/04/08/servlet%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/">servlet生成验证码</a>
+
+      <a href="/2019/04/08/servlet%E7%94%9F%E6%88%90%E9%AA%8C%E8%AF%81%E7%A0%81/" class="index-excerpt">
+        
+        
+          
+        
+        <div>今天正式学习了自动生成验证码的方法，其中用到了从没有接触过的Color类、Graphics类等，做一下纪录。
+一、创建一个DrawImage Servlet，在服务器端生成验证码package lwq.response.study;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.Graphics;
+import java</div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>&nbsp;2019-04-08
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/Java-Web/">Java Web</a>
+            
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Servlet/">Servlet</a>
+            
+              <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/">验证码</a>
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  <script>
+    for (ele of document.getElementById("pagination").getElementsByTagName("a")) {
+      ele.href += '#board';
+    }
+  </script>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+  </main>
+
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
+    <a id="scroll-top-button" href="#" role="button">
+      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+    </a>
   
-</nav>
+
+  
+    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+  
+
+  
+
+  
+
+  <footer class="mt-5">
+  <div class="text-center py-3">
+    <div>
+      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
+      <i class="iconfont icon-love"></i>
+      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
+        <span>Fluid</span></a>
+    </div>
     
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-
-  
-<script src="/fancybox/jquery.fancybox.pack.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
+    
+  <!-- 备案信息 -->
+  <div>
+    <a href="http://beian.miit.gov.cn/" target="_blank" class="beian-icp"
+       rel="nofollow noopener">鲁ICP备20020455号-1</a>
+    
   </div>
+
+
+    
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
+<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
+<script  src="/js/main.js" ></script>
+
+
+  <script  src="/js/lazyload.js" ></script>
+
+
+
+
+
+  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
+  <script  src="/js/clipboard-use.js" ></script>
+
+
+
+
+
+
+<!-- Plugins -->
+
+
+
+  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
+  <script>
+    var typed = new Typed('#subtitle', {
+      strings: [
+        '  ',
+        "多少人终其一生求而不得&nbsp;",
+      ],
+      cursorChar: "_",
+      typeSpeed: 70,
+      loop: false,
+    });
+    typed.stop();
+    $(document).ready(function () {
+      $(".typed-cursor").addClass("h2");
+      typed.start();
+    });
+  </script>
+
+
+
+  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
+  <script>
+    anchors.options = {
+      placement: "right",
+      visible: "hover",
+      
+    };
+    var el = "h1,h2,h3,h4,h5,h6".split(",");
+    var res = [];
+    for (item of el) {
+      res.push(".markdown-body > " + item)
+    }
+    anchors.add(res.join(", "))
+  </script>
+
+
+
+  <script  src="/js/local-search.js" ></script>
+  <script>
+    var path = "/local-search.xml";
+    var inputArea = document.querySelector("#local-search-input");
+    inputArea.onclick = function () {
+      searchFunc(path, 'local-search-input', 'local-search-result');
+      this.onclick = null
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
