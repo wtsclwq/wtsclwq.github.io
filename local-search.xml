@@ -131,33 +131,6 @@
   
   
   <entry>
-    <title>Linux学习纪录（一）ssh登录与用户和组</title>
-    <link href="/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E7%BA%AA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89ssh%E7%99%BB%E5%BD%95%E4%B8%8E%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"/>
-    <url>/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E7%BA%AA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89ssh%E7%99%BB%E5%BD%95%E4%B8%8E%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
-    
-    <content type="html"><![CDATA[<h2 id="一、SSH连接云服务器"><a href="#一、SSH连接云服务器" class="headerlink" title="一、SSH连接云服务器"></a>一、SSH连接云服务器</h2><h2 id="二、用户管理指令"><a href="#二、用户管理指令" class="headerlink" title="二、用户管理指令"></a>二、用户管理指令</h2><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><h4 id="查看用户信息"><a href="#查看用户信息" class="headerlink" title="查看用户信息"></a>查看用户信息</h4><h2 id="三、组管理指令"><a href="#三、组管理指令" class="headerlink" title="三、组管理指令"></a>三、组管理指令</h2><h4 id="添加组"><a href="#添加组" class="headerlink" title="添加组"></a>添加组</h4><h4 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h4><h4 id="修改用户组"><a href="#修改用户组" class="headerlink" title="修改用户组"></a>修改用户组</h4>]]></content>
-    
-    
-    <categories>
-      
-      <category>Linux</category>
-      
-    </categories>
-    
-    
-    <tags>
-      
-      <tag>指令</tag>
-      
-      <tag>云服务器</tag>
-      
-    </tags>
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>Linux学习记录（二）实用指令：系统和文件目录类</title>
     <link href="/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB/"/>
     <url>/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB/</url>
@@ -200,6 +173,33 @@
     <tags>
       
       <tag>路由器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习纪录（一）ssh登录与用户和组</title>
+    <link href="/2020/05/25/Linux%E5%AD%A6%E4%B9%A0%E7%BA%AA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89ssh%E7%99%BB%E5%BD%95%E4%B8%8E%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"/>
+    <url>/2020/05/25/Linux%E5%AD%A6%E4%B9%A0%E7%BA%AA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89ssh%E7%99%BB%E5%BD%95%E4%B8%8E%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、SSH连接云服务器"><a href="#一、SSH连接云服务器" class="headerlink" title="一、SSH连接云服务器"></a>一、SSH连接云服务器</h2><h2 id="二、用户管理指令"><a href="#二、用户管理指令" class="headerlink" title="二、用户管理指令"></a>二、用户管理指令</h2><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><h4 id="查看用户信息"><a href="#查看用户信息" class="headerlink" title="查看用户信息"></a>查看用户信息</h4><h2 id="三、组管理指令"><a href="#三、组管理指令" class="headerlink" title="三、组管理指令"></a>三、组管理指令</h2><h4 id="添加组"><a href="#添加组" class="headerlink" title="添加组"></a>添加组</h4><h4 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h4><h4 id="修改用户组"><a href="#修改用户组" class="headerlink" title="修改用户组"></a>修改用户组</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+      <tag>云服务器</tag>
       
     </tags>
     
