@@ -17,7 +17,7 @@
   <meta name="description" content="">
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
-  <title>两个路由器连接方式 - Hexo</title>
+  <title>Linux系统变成：循环创建子进程分析 - Hexo</title>
 
   <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
 <link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
@@ -132,8 +132,8 @@
               
                 <div class="mt-3 post-meta">
                   <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-05-26 10:06">
-                    2020年5月26日 上午
+                  <time datetime="2020-05-28 13:26">
+                    2020年5月28日 下午
                   </time>
                 </div>
               
@@ -143,7 +143,7 @@
                   
                   <span class="post-meta mr-2">
                     <i class="iconfont icon-chart"></i>
-                    76 字
+                    1.1k 字
                   </span>
                 
 
@@ -153,7 +153,7 @@
                       <i class="iconfont icon-clock-fill"></i>
                     
                     
-                    1
+                    15
                      分钟
                   </span>
                 
@@ -182,7 +182,89 @@
           <div class="post-content mx-auto" id="post">
             
             <article class="markdown-body">
-              <h2 id="LAN-LAN相连"><a href="#LAN-LAN相连" class="headerlink" title="LAN-LAN相连"></a>LAN-LAN相连</h2><p>主路由器正常连接,然后单独连接副路由器,将副路由器的lan口地址改为静态,并且需要与主路由器在同一网段.<br>比如主:192.168.0.1,则副:192.168.1.1<br>然后关闭副路由器的DHCP功能即可</p>
+              <h2 id="C语言源码"><a href="#C语言源码" class="headerlink" title="C语言源码"></a>C语言源码</h2><pre><code class="hljs c"> <span class="hljs-number">1</span> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span>
+ <span class="hljs-number">2</span> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span>
+ <span class="hljs-number">3</span> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unistd.h&gt;</span></span>
+ <span class="hljs-number">4</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123;
+ <span class="hljs-number">5</span>     <span class="hljs-keyword">int</span> i;
+ <span class="hljs-number">6</span>     <span class="hljs-keyword">pid_t</span> pid;
+ <span class="hljs-number">7</span>     <span class="hljs-built_in">printf</span>(<span class="hljs-string">"xxxxxx\n"</span>);
+ <span class="hljs-number">8</span>     <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++)&#123;
+ <span class="hljs-number">9</span>         pid = fork();
+<span class="hljs-number">10</span>         <span class="hljs-keyword">if</span>(pid == <span class="hljs-number">0</span>)&#123;
+<span class="hljs-number">11</span>             <span class="hljs-keyword">break</span>;
+<span class="hljs-number">12</span>         &#125;
+<span class="hljs-number">13</span>     &#125;
+<span class="hljs-number">14</span>     <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">5</span>)&#123;
+<span class="hljs-number">15</span>         sleep(i);
+<span class="hljs-number">16</span>         <span class="hljs-built_in">printf</span>(<span class="hljs-string">"I am %d child, pid = %u\n"</span>,i+<span class="hljs-number">1</span>,getpid);
+<span class="hljs-number">17</span>     &#125;<span class="hljs-keyword">else</span>&#123;
+<span class="hljs-number">18</span>         sleep(i);
+<span class="hljs-number">19</span>         <span class="hljs-built_in">printf</span>(<span class="hljs-string">"I am parent\n"</span>);
+<span class="hljs-number">20</span>     &#125;
+<span class="hljs-number">21</span>
+<span class="hljs-number">22</span>     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;
+<span class="hljs-number">23</span> &#125;</code></pre>
+
+<h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>子进程创建之后，与父进程在CPU面前有相同的权限，同为进程，有相同的机会获取CPU资源。<br>假设在父进程的第一次循环中:i=0,执行完fork()之后创建出了子进程1,父进程抢占到了CPU资源，那么会根据循环条件继续执行循环体，创建新的子进程２参与到CPU的抢占中．<br>假设在父进程的第一次循环中:i=0,执行完fork()之后创建出了子进程1,子进程1抢占到了CPU资源,那么子进程中的i就等于0,进入循环体的判断,然后break,再执行下面的sleep()等语句.<br>父进程的第二次第三次循环都是如此.</p>
+<pre><code class="hljs plain">xxxxxx
+I am 1 child, pid &#x3D; 4195648
+I am 2 child, pid &#x3D; 4195648
+I am 3 child, pid &#x3D; 4195648
+I am 4 child, pid &#x3D; 4195648
+I am 5 child, pid &#x3D; 4195648
+I am parent</code></pre>
+<p>运行结果如上,一开始我不理解的地方在于子进程1、2、3、4、5是按照顺序创建出来的，那么他们自己进程中的sleep()语句的睡眠时间应该是越来越久的,那么执行结果不应该是这样吗:</p>
+<pre><code class="hljs plain">(睡眠0秒)
+I am 1 child, pid &#x3D; 4195648
+(睡眠1秒)
+I am 2 child, pid &#x3D; 4195648
+(睡眠2秒)
+I am 3 child, pid &#x3D; 4195648
+(睡眠3秒)
+I am 4 child, pid &#x3D; 4195648
+(睡眠4秒)
+I am 5 child, pid &#x3D; 4195648
+(睡眠5秒)
+I am parent</code></pre>
+<p><strong>但实际上,由于CPU的运行速度非常快,子进程创建出来之后执行完成的速度也就非常快,五个子进程会在几乎相同的时间内创建出来,然后各自执行自己的sleep()语句,然后由于睡眠时间的不同而产生输出的时间差,按照顺序输出自己的语句.</strong></p>
+<p>如果删除掉程序中的sleep()语句,那么运行结果:</p>
+<pre><code class="hljs plain">xxxxxx
+I am parent
+I am 2 child, pid &#x3D; 4195600
+I am 3 child, pid &#x3D; 4195600
+I am 4 child, pid &#x3D; 4195600
+[lwq@lwqlinux learn]$ I am 5 child, pid &#x3D; 4195600
+I am 1 child, pid &#x3D; 4195600</code></pre>
+<p>原因是for循环在编译之后,二进制源码的表达方式其实是几乎同时将五个子进程同时放出来,再加上父进程一共是6个进程,和我上面分析的类似,再加上Shell的进程,也就是7个进程共同抢占CPU资源,<code>[lwq@lwqlinux learn]$ I am 5 child, pid = 4195600</code>这一行的结果也就是因为在子进程5结束后,Shell抢占到了CPU资源,之后又被子进程1抢占到了CPU资源.<br><strong>普通情况下出现这种输出的时候Shell是不能接受输入的,但其实父进程+5个子进程已经结束了,CPU已经回到了Shell的手上,所以此时是可以接受Shell指令输入的.</strong></p>
+<p>从多次运行的结果上来看也可以知道,这些进程是随机抢占CPU资源的,所以顺序几乎每次都不一样:</p>
+<pre><code class="hljs plain">xxxxxx
+I am 1 child, pid &#x3D; 4195536
+I am parent
+I am 5 child, pid &#x3D; 4195536
+I am 4 child, pid &#x3D; 4195536
+I am 3 child, pid &#x3D; 4195536
+I am 2 child, pid &#x3D; 4195536
+[lwq@lwqlinux learn]$
+[lwq@lwqlinux learn]$ .&#x2F;fork
+xxxxxx
+I am parent
+I am 2 child, pid &#x3D; 4195536
+[lwq@lwqlinux learn]$ I am 3 child, pid &#x3D; 4195536
+I am 4 child, pid &#x3D; 4195536
+I am 5 child, pid &#x3D; 4195536
+I am 1 child, pid &#x3D; 4195536
+.&#x2F;fork
+xxxxxx
+I am parent
+I am 2 child, pid &#x3D; 4195536
+I am 3 child, pid &#x3D; 4195536
+I am 4 child, pid &#x3D; 4195536
+[lwq@lwqlinux learn]$ I am 5 child, pid &#x3D; 4195536
+I am 1 child, pid &#x3D; 4195536</code></pre>
+<p>因此想要看到预期输出,Sleep()语句是很有必要的</p>
+<p><strong>再强调一次,5个子进程几乎再同一时间(还是有先后顺序)被创建,并且与Shell进程和父进程同时抢占CPU资源,所以运行顺序几乎是随机的,只不过因为按照先后顺序设定了递增的睡眠时间,所以才会产生规则的输出.</strong></p>
+<p>比较不错的视频:<a href="https://www.bilibili.com/video/BV1Kb411W7Qz?p=14" target="_blank" rel="noopener">非常好的Linux系统编程</a></p>
 
             </article>
             <hr>
@@ -192,7 +274,7 @@
                   <div class="post-meta mr-3">
                     <i class="iconfont icon-category"></i>
                     
-                      <a class="hover-with-bg" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a>
+                      <a class="hover-with-bg" href="/categories/Linux/">Linux</a>
                     
                   </div>
                 
@@ -200,7 +282,9 @@
                   <div class="post-meta">
                     <i class="iconfont icon-tags"></i>
                     
-                      <a class="hover-with-bg" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/">路由器</a>
+                      <a class="hover-with-bg" href="/tags/%E8%BF%9B%E7%A8%8B/">进程</a>
+                    
+                      <a class="hover-with-bg" href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/">系统调用</a>
                     
                   </div>
                 
@@ -213,18 +297,12 @@
                   <div class="post-prev col-6">
                     
                     
-                      <a href="/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Linux学习记录（二）实用指令：系统和文件目录类</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </div>
                   <div class="post-next col-6">
                     
                     
-                      <a href="/2020/05/17/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%89%EF%BC%89Swagger%E6%A1%86%E6%9E%B6%E7%9A%84%E4%BD%BF%E7%94%A8/">
-                        <span class="hidden-mobile">项目总结（三）Swagger框架的使用</span>
+                      <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E7%BB%84%E7%AE%A1%E7%90%86/">
+                        <span class="hidden-mobile">Linux学习记录（六）组管理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -371,7 +449,7 @@
     var typed = new Typed('#subtitle', {
       strings: [
         '  ',
-        "两个路由器连接方式&nbsp;",
+        "Linux系统变成：循环创建子进程分析&nbsp;",
       ],
       cursorChar: "_",
       typeSpeed: 70,

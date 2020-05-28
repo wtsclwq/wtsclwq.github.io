@@ -4,6 +4,185 @@
   
   
   <entry>
+    <title>Linux系统变成：循环创建子进程分析</title>
+    <link href="/2020/05/28/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90/"/>
+    <url>/2020/05/28/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h2 id="C语言源码"><a href="#C语言源码" class="headerlink" title="C语言源码"></a>C语言源码</h2><pre><code class="hljs c"> <span class="hljs-number">1</span> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdio.h&gt;</span></span> <span class="hljs-number">2</span> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;stdlib.h&gt;</span></span> <span class="hljs-number">3</span> <span class="hljs-meta">#<span class="hljs-meta-keyword">include</span> <span class="hljs-meta-string">&lt;unistd.h&gt;</span></span> <span class="hljs-number">4</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">main</span><span class="hljs-params">(<span class="hljs-keyword">void</span>)</span></span>&#123; <span class="hljs-number">5</span>     <span class="hljs-keyword">int</span> i; <span class="hljs-number">6</span>     <span class="hljs-keyword">pid_t</span> pid; <span class="hljs-number">7</span>     <span class="hljs-built_in">printf</span>(<span class="hljs-string">"xxxxxx\n"</span>); <span class="hljs-number">8</span>     <span class="hljs-keyword">for</span> (i = <span class="hljs-number">0</span>; i &lt; <span class="hljs-number">5</span>; i++)&#123; <span class="hljs-number">9</span>         pid = fork();<span class="hljs-number">10</span>         <span class="hljs-keyword">if</span>(pid == <span class="hljs-number">0</span>)&#123;<span class="hljs-number">11</span>             <span class="hljs-keyword">break</span>;<span class="hljs-number">12</span>         &#125;<span class="hljs-number">13</span>     &#125;<span class="hljs-number">14</span>     <span class="hljs-keyword">if</span>(i &lt; <span class="hljs-number">5</span>)&#123;<span class="hljs-number">15</span>         sleep(i);<span class="hljs-number">16</span>         <span class="hljs-built_in">printf</span>(<span class="hljs-string">"I am %d child, pid = %u\n"</span>,i+<span class="hljs-number">1</span>,getpid);<span class="hljs-number">17</span>     &#125;<span class="hljs-keyword">else</span>&#123;<span class="hljs-number">18</span>         sleep(i);<span class="hljs-number">19</span>         <span class="hljs-built_in">printf</span>(<span class="hljs-string">"I am parent\n"</span>);<span class="hljs-number">20</span>     &#125;<span class="hljs-number">21</span><span class="hljs-number">22</span>     <span class="hljs-keyword">return</span> <span class="hljs-number">0</span>;<span class="hljs-number">23</span> &#125;</code></pre><h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><p>子进程创建之后，与父进程在CPU面前有相同的权限，同为进程，有相同的机会获取CPU资源。<br>假设在父进程的第一次循环中:i=0,执行完fork()之后创建出了子进程1,父进程抢占到了CPU资源，那么会根据循环条件继续执行循环体，创建新的子进程２参与到CPU的抢占中．<br>假设在父进程的第一次循环中:i=0,执行完fork()之后创建出了子进程1,子进程1抢占到了CPU资源,那么子进程中的i就等于0,进入循环体的判断,然后break,再执行下面的sleep()等语句.<br>父进程的第二次第三次循环都是如此.</p><pre><code class="hljs plain">xxxxxxI am 1 child, pid &#x3D; 4195648I am 2 child, pid &#x3D; 4195648I am 3 child, pid &#x3D; 4195648I am 4 child, pid &#x3D; 4195648I am 5 child, pid &#x3D; 4195648I am parent</code></pre><p>运行结果如上,一开始我不理解的地方在于子进程1、2、3、4、5是按照顺序创建出来的，那么他们自己进程中的sleep()语句的睡眠时间应该是越来越久的,那么执行结果不应该是这样吗:</p><pre><code class="hljs plain">(睡眠0秒)I am 1 child, pid &#x3D; 4195648(睡眠1秒)I am 2 child, pid &#x3D; 4195648(睡眠2秒)I am 3 child, pid &#x3D; 4195648(睡眠3秒)I am 4 child, pid &#x3D; 4195648(睡眠4秒)I am 5 child, pid &#x3D; 4195648(睡眠5秒)I am parent</code></pre><p><strong>但实际上,由于CPU的运行速度非常快,子进程创建出来之后执行完成的速度也就非常快,五个子进程会在几乎相同的时间内创建出来,然后各自执行自己的sleep()语句,然后由于睡眠时间的不同而产生输出的时间差,按照顺序输出自己的语句.</strong></p><p>如果删除掉程序中的sleep()语句,那么运行结果:</p><pre><code class="hljs plain">xxxxxxI am parentI am 2 child, pid &#x3D; 4195600I am 3 child, pid &#x3D; 4195600I am 4 child, pid &#x3D; 4195600[lwq@lwqlinux learn]$ I am 5 child, pid &#x3D; 4195600I am 1 child, pid &#x3D; 4195600</code></pre><p>原因是for循环在编译之后,二进制源码的表达方式其实是几乎同时将五个子进程同时放出来,再加上父进程一共是6个进程,和我上面分析的类似,再加上Shell的进程,也就是7个进程共同抢占CPU资源,<code>[lwq@lwqlinux learn]$ I am 5 child, pid = 4195600</code>这一行的结果也就是因为在子进程5结束后,Shell抢占到了CPU资源,之后又被子进程1抢占到了CPU资源.<br><strong>普通情况下出现这种输出的时候Shell是不能接受输入的,但其实父进程+5个子进程已经结束了,CPU已经回到了Shell的手上,所以此时是可以接受Shell指令输入的.</strong></p><p>从多次运行的结果上来看也可以知道,这些进程是随机抢占CPU资源的,所以顺序几乎每次都不一样:</p><pre><code class="hljs plain">xxxxxxI am 1 child, pid &#x3D; 4195536I am parentI am 5 child, pid &#x3D; 4195536I am 4 child, pid &#x3D; 4195536I am 3 child, pid &#x3D; 4195536I am 2 child, pid &#x3D; 4195536[lwq@lwqlinux learn]$[lwq@lwqlinux learn]$ .&#x2F;forkxxxxxxI am parentI am 2 child, pid &#x3D; 4195536[lwq@lwqlinux learn]$ I am 3 child, pid &#x3D; 4195536I am 4 child, pid &#x3D; 4195536I am 5 child, pid &#x3D; 4195536I am 1 child, pid &#x3D; 4195536.&#x2F;forkxxxxxxI am parentI am 2 child, pid &#x3D; 4195536I am 3 child, pid &#x3D; 4195536I am 4 child, pid &#x3D; 4195536[lwq@lwqlinux learn]$ I am 5 child, pid &#x3D; 4195536I am 1 child, pid &#x3D; 4195536</code></pre><p>因此想要看到预期输出,Sleep()语句是很有必要的</p><p><strong>再强调一次,5个子进程几乎再同一时间(还是有先后顺序)被创建,并且与Shell进程和父进程同时抢占CPU资源,所以运行顺序几乎是随机的,只不过因为按照先后顺序设定了递增的睡眠时间,所以才会产生规则的输出.</strong></p><p>比较不错的视频:<a href="https://www.bilibili.com/video/BV1Kb411W7Qz?p=14" target="_blank" rel="noopener">非常好的Linux系统编程</a></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>进程</tag>
+      
+      <tag>系统调用</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习记录（六）组管理</title>
+    <link href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E7%BB%84%E7%AE%A1%E7%90%86/"/>
+    <url>/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E7%BB%84%E7%AE%A1%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习记录（五）实用指令：压缩和解压类.md</title>
+    <link href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%B1%BB/"/>
+    <url>/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="六、压缩和解压类"><a href="#六、压缩和解压类" class="headerlink" title="六、压缩和解压类"></a>六、压缩和解压类</h2><h4 id="gzip-gunzip指令"><a href="#gzip-gunzip指令" class="headerlink" title="gzip/gunzip指令"></a>gzip/gunzip指令</h4><p><code>gzip 文件</code>压缩文件（覆盖原文件）<br><code>gunzip 文件</code>解压文件（同上）</p><h4 id="zip-unzip指令"><a href="#zip-unzip指令" class="headerlink" title="zip/unzip指令"></a>zip/unzip指令</h4><p><code>zip [选项] xxx.zip 将要压缩的内容</code>将文件压缩为xxx.zip<br>常用选项：<br><code>-r</code>：递归压缩，压缩目录<br><code>unzip [选项]xxx.zip</code>将xxx.zip解压<br>常用选项：<br><code>-d&lt;目录&gt;</code>：指定解压后文件的存放目录</p><h4 id="tar指令"><a href="#tar指令" class="headerlink" title="tar指令"></a>tar指令</h4><p>打包指令，最后打包的文件是.tar.gz文件<br><code>tar [选项] xxx.tar.gz 打包的内容</code><br>常用选项：<br><code>-c</code>产生tar打包的文件<br><code>-v</code>显示详细信息<br><code>-f</code>指定打包后的文件名<br><code>-z</code>打包同时压缩<br><code>-x</code>解包.tar文件<br>常用<code>-zcvf</code>打包<code>-zxvf</code>解包</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习记录（四）实用指令：搜索查找类</title>
+    <link href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BB/"/>
+    <url>/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="五、搜索查找类"><a href="#五、搜索查找类" class="headerlink" title="五、搜索查找类"></a>五、搜索查找类</h2><h4 id="find指令"><a href="#find指令" class="headerlink" title="find指令"></a>find指令</h4><p>从指定目录向下递归遍历其哥哥子目录，将满足条件的文件或目录显示在终端<br><code>find [搜索范围] [选项]</code><br>常用选项：<br><code>-name</code>按名查找<br><code>-user</code>按用户查找<br><code>-size +20M</code>查找大小&gt;20M的文件</p><h4 id="locate指令"><a href="#locate指令" class="headerlink" title="locate指令"></a>locate指令</h4><p>快速定位文件路径，利用实现建立的系统中所有文件名及路径的locate数据库实现快速定位。无需遍历整个文件系统，但是为了保证查询的准确性，应该定期更新locate时刻<br><code>locate 搜索文件</code><br><code>updatedb</code>更新locate数据库</p><h4 id="grep指令和管道符号"><a href="#grep指令和管道符号" class="headerlink" title="grep指令和管道符号|"></a>grep指令和管道符号|</h4><p>过滤查找，管道符<code>|</code>，表示将前一个命令的处理结果输出传递给后面的命令处理<br><code>grep [选项] 查找内容 源文件</code><br>常用选项：<br><code>-n</code>显示匹配行以及行号<br><code>-i</code>忽略字母大小写</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习记录（三）实用指令：时间日期类</title>
+    <link href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/"/>
+    <url>/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="四、时间日期类"><a href="#四、时间日期类" class="headerlink" title="四、时间日期类"></a>四、时间日期类</h2><h4 id="date指令-显示当前日期"><a href="#date指令-显示当前日期" class="headerlink" title="date指令-显示当前日期"></a>date指令-显示当前日期</h4><p><code>date</code>默认格式<br><code>date &quot;+%Y-%m-%d&quot;</code>年-月-日<br><code>date &quot;+%Y-%m-%d %H:%M:%S&quot;</code>年-月-日 时:分:秒</p><h4 id="date指令-设置日期"><a href="#date指令-设置日期" class="headerlink" title="date指令-设置日期"></a>date指令-设置日期</h4><p><code>date -s 字符串时间</code></p><h4 id="cal指令-日历"><a href="#cal指令-日历" class="headerlink" title="cal指令-日历"></a>cal指令-日历</h4><p><code>cal [选项]</code><br><code>cal</code><br><code>cal 2020</code></p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习纪录（一）ssh登录与用户和组</title>
+    <link href="/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E7%BA%AA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89ssh%E7%99%BB%E5%BD%95%E4%B8%8E%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/"/>
+    <url>/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E7%BA%AA%E5%BD%95%EF%BC%88%E4%B8%80%EF%BC%89ssh%E7%99%BB%E5%BD%95%E4%B8%8E%E7%94%A8%E6%88%B7%E5%92%8C%E7%BB%84/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、SSH连接云服务器"><a href="#一、SSH连接云服务器" class="headerlink" title="一、SSH连接云服务器"></a>一、SSH连接云服务器</h2><h2 id="二、用户管理指令"><a href="#二、用户管理指令" class="headerlink" title="二、用户管理指令"></a>二、用户管理指令</h2><h4 id="添加用户"><a href="#添加用户" class="headerlink" title="添加用户"></a>添加用户</h4><h4 id="删除用户"><a href="#删除用户" class="headerlink" title="删除用户"></a>删除用户</h4><h4 id="查看用户信息"><a href="#查看用户信息" class="headerlink" title="查看用户信息"></a>查看用户信息</h4><h2 id="三、组管理指令"><a href="#三、组管理指令" class="headerlink" title="三、组管理指令"></a>三、组管理指令</h2><h4 id="添加组"><a href="#添加组" class="headerlink" title="添加组"></a>添加组</h4><h4 id="删除组"><a href="#删除组" class="headerlink" title="删除组"></a>删除组</h4><h4 id="修改用户组"><a href="#修改用户组" class="headerlink" title="修改用户组"></a>修改用户组</h4>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+      <tag>云服务器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>Linux学习记录（二）实用指令：系统和文件目录类</title>
+    <link href="/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB/"/>
+    <url>/2020/05/26/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E7%B3%BB%E7%BB%9F%E5%92%8C%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%B1%BB/</url>
+    
+    <content type="html"><![CDATA[<h2 id="一、指定运行级别"><a href="#一、指定运行级别" class="headerlink" title="一、指定运行级别"></a>一、指定运行级别</h2><h4 id="七个运行级别"><a href="#七个运行级别" class="headerlink" title="七个运行级别"></a>七个运行级别</h4><pre><code>0. 关机1. 单用户2. 多用户无网络3. 多用户有网络4. 保留5. 图形界面6. 重启</code></pre><h4 id="运行级别配置文件"><a href="#运行级别配置文件" class="headerlink" title="运行级别配置文件"></a>运行级别配置文件</h4><p><code>/etc/inittab</code> CentOS 7中已废弃，使用target管理</p><h4 id="命令（CentOS-6）"><a href="#命令（CentOS-6）" class="headerlink" title="命令（CentOS 6）"></a>命令（CentOS 6）</h4><p>init[012356]</p><h4 id="命令（CentOS-7）"><a href="#命令（CentOS-7）" class="headerlink" title="命令（CentOS 7）"></a>命令（CentOS 7）</h4><p>systemctl [command] [unit.target]</p><p>command:</p><pre><code>1. get-default :取得当前的target2. set-default :设置指定的target为默认的运行级别3. isolate :切换到指定的运行级别4. unit.target :运行级别</code></pre><p>运行级别：</p><pre><code>0.shutdown.target1.emergency.target2.rescure.target3.multi-user.target4.无5.graphical.target6.无</code></pre><h2 id="二、帮助指令"><a href="#二、帮助指令" class="headerlink" title="二、帮助指令"></a>二、帮助指令</h2><h4 id="man基本语法"><a href="#man基本语法" class="headerlink" title="man基本语法"></a>man基本语法</h4><p><code>man [命令/配置文件]</code></p><h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p><code>man ls</code></p><h4 id="helo基本语法"><a href="#helo基本语法" class="headerlink" title="helo基本语法"></a>helo基本语法</h4><p><code>help [命令]</code></p><h4 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h4><p><code>help cd</code></p><h4 id="百度-谷歌"><a href="#百度-谷歌" class="headerlink" title="百度/谷歌"></a>百度/谷歌</h4><h2 id="三、文件目录类"><a href="#三、文件目录类" class="headerlink" title="三、文件目录类"></a>三、文件目录类</h2><h4 id="pwd指令"><a href="#pwd指令" class="headerlink" title="pwd指令"></a>pwd指令</h4><p>显示当前目录的绝对路径<br><code>pwd</code></p><h4 id="ls指令"><a href="#ls指令" class="headerlink" title="ls指令"></a>ls指令</h4><p>ls [选项] [目录/文件]<br>常用选项<br><code>-a</code> <code>-l</code></p><h4 id="CD指令"><a href="#CD指令" class="headerlink" title="CD指令"></a>CD指令</h4><p>跳转目录<br><code>cd 参数</code><br>常用参数<br><code>~</code> <code>-</code> <code>..</code> <code>/</code><br>绝对路径和相对路径<br>绝对路径：从根目录<code>/</code>开始定位 <code>/home/lwq</code><br>相对路径：从当前工作目录开始定位 <code>../lwq</code></p><h4 id="mkdir指令"><a href="#mkdir指令" class="headerlink" title="mkdir指令"></a>mkdir指令</h4><p>创建目录<br><code>mkdir [选项] 要创建的目录</code><br>示例：<code>mkdir /home/dog</code><br>常用选项<br><code>-p</code>创建多级目录<br>示例：<code>mkdir -p /home/dog/cat/niuzi</code></p><h4 id="rmdir指令"><a href="#rmdir指令" class="headerlink" title="rmdir指令"></a>rmdir指令</h4><p><code>rmdir [选项] 要删除的空目录</code><br>示例：<code>rmdir /home/dog</code><br>如果删除非空目录则需要使用 <code>rm -rf 要删除的目录</code></p><h4 id="touch指令"><a href="#touch指令" class="headerlink" title="touch指令"></a>touch指令</h4><p> 创建空文件<br> <code>touch 文件名</code><br> 示例：<code>touch niuzi.c</code> <code>touch file{1,2,3}</code></p><h4 id="copy指令"><a href="#copy指令" class="headerlink" title="copy指令"></a>copy指令</h4><p>拷贝指定文件到指定目录<br><code>cp [选项] source dest示例：</code>cp file1 ~/learn/test<code>常用选项：</code>-r<code>递归复制整个文件夹（包括文件）示例：</code>cp -r learn ~/learn/test<code>其中learn为文件夹忽略覆盖提示：</code>\cp……`</p><h4 id="rm指令"><a href="#rm指令" class="headerlink" title="rm指令"></a>rm指令</h4><p>移除文件或目录<br><code>rm [选项] 要删除的文件或目录</code><br>示例：<code>rm /home/lwq/learn/file1</code> <code>rm /home/lwq/learn/*</code><br>常用选项：<br><code>-r</code>：递归删除整个文件夹<br><code>-f</code>：强制删除，不提示<br>示例：<code>rm -rf /</code></p><h4 id="mv指令"><a href="#mv指令" class="headerlink" title="mv指令"></a>mv指令</h4><p>移动或重命名文件与目录<br><code>mv oldNameFile newNameFile</code>重命名<br><code>mv /temp/moveFile /targetFolder</code>移动文件 </p><h4 id="cat指令"><a href="#cat指令" class="headerlink" title="cat指令"></a>cat指令</h4><p>查看文件内容<br><code>cat [选项] 要查看的文件</code><br>常用选项：<br><code>-n</code>：显示行号<br>示例：<code>cat -n file2</code><br>一般会带上管道命令 <code>|more</code></p><h4 id="more指令"><a href="#more指令" class="headerlink" title="more指令"></a>more指令</h4><p>基于VI编辑器的文本过滤器，它以全屏幕的方式俺页显示文本文件的内容<br><code>more 要查看的文件</code><br>快捷键：</p><pre><code>空格：向下一页Enter：像下一行q：离开ctrl+f：向下一屏ctrl+b：返回上一屏=：输出当前行号f：输出文件名当前行号</code></pre><h4 id="less指令"><a href="#less指令" class="headerlink" title="less指令"></a>less指令</h4><p>分屏查看文件内容，并不是一次将整个文档加载后才显示，而是根据现实需要按需加载，常用于大文件<br><code>less 要查看的文件</code></p><h4 id="gt-指令和-gt-gt-指令"><a href="#gt-指令和-gt-gt-指令" class="headerlink" title="&gt;指令和&gt;&gt;指令"></a>&gt;指令和&gt;&gt;指令</h4><p>&gt;输出重定向和&gt;&gt;追加<br><code>ls -l &gt;文件</code>列表内容写入文件中（覆盖）<br><code>ls -l &gt;&gt;文件</code>列表内容追加到文件末尾<br><code>cat 文件1 &gt; 文件2</code>将文件1的内容覆盖到文件2<br><code>echo &quot;内容&quot; &gt; 文件</code>将”内容”写入到文件中</p><h4 id="echo指令"><a href="#echo指令" class="headerlink" title="echo指令"></a>echo指令</h4><p>输出内容到控制台<br><code>echo [选项] [输出内容]</code><br>示例：<br><code>echo $PATH</code>输出当前环境变量路径<br><code>echo &quot;hello&quot;</code>输出文本：hello</p><h4 id="head指令"><a href="#head指令" class="headerlink" title="head指令"></a>head指令</h4><p>显示文件开头部分内容，默认前10行<br><code>head 文件</code><br><code>head -n 5  文件</code></p><h4 id="tail指令"><a href="#tail指令" class="headerlink" title="tail指令"></a>tail指令</h4><p>输出文件中尾部内容，默认输出后10行<br><code>tail 文件</code><br><code>tail -n 5 文件</code><br><strong><code>tail -f 文件</code>实时追踪该文档的所有更新</strong></p><h4 id="ln指令"><a href="#ln指令" class="headerlink" title="ln指令"></a>ln指令</h4><p>软链接/符号链接，类似win的快捷方式，主要存放了链接其他文件的路径<br><code>ln -s [原文件/目录] [软链接名]</code>给源文件创建一个软链接<br>删除软链接：<code>rm -rf 软链接</code>末尾不要带<code>/</code></p><h4 id="history指令"><a href="#history指令" class="headerlink" title="history指令"></a>history指令</h4><p>查看已经执行过的历史命令，也可以执行历史命令<br><code>history</code>所有<br><code>history 10</code>后10条<br><code>! 111</code>执行编号为111的历史指令</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>Linux</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>指令</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>两个路由器连接方式</title>
     <link href="/2020/05/26/%E4%B8%A4%E4%B8%AA%E8%B7%AF%E7%94%B1%E5%99%A8%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F/"/>
     <url>/2020/05/26/%E4%B8%A4%E4%B8%AA%E8%B7%AF%E7%94%B1%E5%99%A8%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F/</url>
