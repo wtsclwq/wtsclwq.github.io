@@ -1,455 +1,251 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-
-
-
-
+<html>
 <head>
-  <meta charset="UTF-8">
-  <link rel="apple-touch-icon" sizes="76x76" href="/img/apple-touch-icon.ico">
-  <link rel="icon" type="image/png" href="/img/favicon.ico">
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta charset="utf-8">
   
-  <meta name="theme-color" content="#1e2022">
-  <meta name="description" content="">
-  <meta name="author" content="John Doe">
-  <meta name="keywords" content="">
-  <title>折腾了一整天的美化，有一些心得 - Hexo</title>
 
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/css/bootstrap.min.css" />
-<link  rel="stylesheet" href="https://cdn.staticfile.org/github-markdown-css/4.0.0/github-markdown.min.css" />
-
-
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/highlight.js/10.0.0/styles/github-gist.min.css" />
-
-
-<!-- 主题依赖的图标库，不要自行修改 -->
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_fmb4a04yx8h.css">
-
-
-
-<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_pjno9b9zyxs.css">
-
-
-
-
-<link  rel="stylesheet" href="/css/main.css" />
-
-<!-- 自定义样式保持在最底部 -->
-
+  
+  <title>折腾了一整天的美化，有一些心得 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1、起因闲来无事酷安，偶然间看到有人在刷语雀的推广码，就点进去看了一下，发现 UI 和功能都很能打动我，遂注册登录下载，然后去知乎搜了一下看看大家都怎么看语雀，还是好评居多。又碰巧瞥到了一个 hexo 与语雀结合的案例，并且用 Travis CI 进行自动更新，真是太香了啊，开整。 2、过程从八点钟开始折腾了一晚上，先装了 Ruby，再装 Msys2，结果到最后还是装不上 Travis，一直到后半">
+<meta property="og:type" content="article">
+<meta property="og:title" content="折腾了一整天的美化，有一些心得">
+<meta property="og:url" content="https://wtsclwq.github.io/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1、起因闲来无事酷安，偶然间看到有人在刷语雀的推广码，就点进去看了一下，发现 UI 和功能都很能打动我，遂注册登录下载，然后去知乎搜了一下看看大家都怎么看语雀，还是好评居多。又碰巧瞥到了一个 hexo 与语雀结合的案例，并且用 Travis CI 进行自动更新，真是太香了啊，开整。 2、过程从八点钟开始折腾了一晚上，先装了 Ruby，再装 Msys2，结果到最后还是装不上 Travis，一直到后半">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-05-12T12:17:00.000Z">
+<meta property="article:modified_time" content="2020-05-22T03:24:13.194Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="hexo">
+<meta property="article:tag" content="美化">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
 
 <meta name="generator" content="Hexo 4.2.1"></head>
 
-
 <body>
-  <header style="height: 70vh;">
-    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
-  <div class="container">
-    <a class="navbar-brand"
-       href="/">&nbsp;<strong>如言</strong>&nbsp;</a>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="https://wtsclwq.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-yuque/折腾了一整天的美化，有一些心得" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/" class="article-date">
+  <time datetime="2020-05-12T12:17:00.000Z" itemprop="datePublished">2020-05-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/hexo/">hexo</a>
+  </div>
 
-    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
-            data-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <div class="animated-icon"><span></span><span></span><span></span></div>
-    </button>
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      折腾了一整天的美化，有一些心得
+    </h1>
+  
 
-    <!-- Collapsible content -->
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav ml-auto text-center">
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1、起因"><a href="#1、起因" class="headerlink" title="1、起因"></a>1、起因</h2><p>闲来无事酷安，偶然间看到有人在刷语雀的推广码，就点进去看了一下，发现 UI 和功能都很能打动我，遂注册登录下载，然后去知乎搜了一下看看大家都怎么看语雀，还是好评居多。又碰巧瞥到了一个 hexo 与语雀结合的案例，并且用 Travis CI 进行自动更新，真是太香了啊，开整。</p>
+<h2 id="2、过程"><a href="#2、过程" class="headerlink" title="2、过程"></a>2、过程</h2><p>从八点钟开始折腾了一晚上，先装了 Ruby，再装 Msys2，结果到最后还是装不上 Travis，一直到后半夜也没搞好。到后来又看到了 GitHub Actions 这个东西，和也能够实现持续集成，结果也还是搞不好，文件、SSH、Token 自我检查感觉全都没问题，结果却一直不成功，好吧，一直折腾到 4 点钟，放弃睡觉。</p>
+<h2 id="3、转折"><a href="#3、转折" class="headerlink" title="3、转折"></a>3、转折</h2><p>后来放弃了持续集成这个念头，决定就用 yuque-hexo 加上自己勤劳的双手手动更新吧，然后看上了一款 hexo 的主题：<a href="https://github.com/hongweifuture/hexo-theme-halo" target="_blank" rel="noopener"><strong>halo</strong></a>，接着开整，结果啊主题下载后，各种文件也配置了，yml 写的也没啥问题，结果一直报错，网上能找到的解决方案寥寥无几也都没有效果，从 10 点一直折腾到下午 2 点，放弃。换一款主题，结果三分钟搞定，虽然效果没有那么炫酷，但是简单、整洁：<strong><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">fluid</a>。</strong>找了一下好看的图片，把主题原来的浅色配色改成了深色，总算是告一段落了。<br>成果就是<a href="https://www.lwqlearn.xyz/" target="_blank" rel="noopener"><strong>这样</strong></a>了。</p>
+<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><p>赏心悦目的设计和酷炫的效果确实诱人，显示现在回想起来为了这写耗费了一整天的时间，是不是值得呢？如果自己的前端知识更丰富一点是不是就不会费这么大的力气了呢？将这些时间用来学习，用原来简洁的 next 主题也很好呀。<br>喜欢折腾不是坏事，但是今天的做法我觉得自己有些本末倒置了，博客最大的作用应该是记录自己的学习和生活轨迹，分享自己的知识和经验，内容才是最重要的，还好我及时转变了思想，现在的这款主题用着也是很香的，嘻嘻。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://wtsclwq.github.io/2020/05/12/yuque/%E6%8A%98%E8%85%BE%E4%BA%86%E4%B8%80%E6%95%B4%E5%A4%A9%E7%9A%84%E7%BE%8E%E5%8C%96%EF%BC%8C%E6%9C%89%E4%B8%80%E4%BA%9B%E5%BF%83%E5%BE%97/" data-id="ckakll6pb0013d8tfd2pr38td" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/">
-              <i class="iconfont icon-home-fill"></i>
-              首页</a>
+          项目总结（二） 数据库和接口设计
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">项目总结（一） 关于Web项目架构的思考</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Java-Web/">Java Web</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/hexo/">hexo</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E5%89%8D%E7%AB%AF/">前端</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8/">日常</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%97%A5%E5%B8%B8%E6%8A%80%E5%B7%A7/">日常技巧</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9A%8F%E7%AC%94-%E6%91%98%E6%8A%84/">随笔&摘抄</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/MVC/" rel="tag">MVC</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/React/" rel="tag">React</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Servlet/" rel="tag">Servlet</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spring-Boot/" rel="tag">Spring Boot</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swagger/" rel="tag">Swagger</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/npm/" rel="tag">npm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/yarn/" rel="tag">yarn</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%B8%8B%E8%BD%BD/" rel="tag">下载</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" rel="tag">云服务器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%80%BB%E7%BB%93/" rel="tag">总结</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%8C%87%E4%BB%A4/" rel="tag">指令</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%91%98%E6%8A%84/" rel="tag">摘抄</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" rel="tag">系统调用</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BE%8E%E5%8C%96/" rel="tag">美化</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" rel="tag">路由器</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%85%E9%9B%B7/" rel="tag">迅雷</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%BF%9B%E7%A8%8B/" rel="tag">进程</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" rel="tag">随机数</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" rel="tag">验证码</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/MVC/" style="font-size: 10px;">MVC</a> <a href="/tags/React/" style="font-size: 10px;">React</a> <a href="/tags/Servlet/" style="font-size: 16.67px;">Servlet</a> <a href="/tags/Spring-Boot/" style="font-size: 16.67px;">Spring Boot</a> <a href="/tags/Swagger/" style="font-size: 10px;">Swagger</a> <a href="/tags/hexo/" style="font-size: 13.33px;">hexo</a> <a href="/tags/npm/" style="font-size: 10px;">npm</a> <a href="/tags/yarn/" style="font-size: 10px;">yarn</a> <a href="/tags/%E4%B8%8B%E8%BD%BD/" style="font-size: 10px;">下载</a> <a href="/tags/%E4%BA%91%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 10px;">云服务器</a> <a href="/tags/%E6%80%BB%E7%BB%93/" style="font-size: 10px;">总结</a> <a href="/tags/%E6%8C%87%E4%BB%A4/" style="font-size: 20px;">指令</a> <a href="/tags/%E6%91%98%E6%8A%84/" style="font-size: 10px;">摘抄</a> <a href="/tags/%E7%B3%BB%E7%BB%9F%E8%B0%83%E7%94%A8/" style="font-size: 10px;">系统调用</a> <a href="/tags/%E7%BE%8E%E5%8C%96/" style="font-size: 10px;">美化</a> <a href="/tags/%E8%B7%AF%E7%94%B1%E5%99%A8/" style="font-size: 10px;">路由器</a> <a href="/tags/%E8%BF%85%E9%9B%B7/" style="font-size: 10px;">迅雷</a> <a href="/tags/%E8%BF%9B%E7%A8%8B/" style="font-size: 10px;">进程</a> <a href="/tags/%E9%9A%8F%E6%9C%BA%E6%95%B0/" style="font-size: 10px;">随机数</a> <a href="/tags/%E9%AA%8C%E8%AF%81%E7%A0%81/" style="font-size: 13.33px;">验证码</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/05/">五月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/04/">四月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/02/">二月 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">五月 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">四月 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/05/28/Linux%E7%B3%BB%E7%BB%9F%E7%BC%96%E7%A8%8B%EF%BC%9A%E5%BE%AA%E7%8E%AF%E5%88%9B%E5%BB%BA%E5%AD%90%E8%BF%9B%E7%A8%8B%E5%88%86%E6%9E%90/">Linux系统变成：循环创建子进程分析</a>
           </li>
         
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/archives/">
-              <i class="iconfont icon-archive-fill"></i>
-              归档</a>
+          <li>
+            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%85%AD%EF%BC%89%E7%BB%84%E7%AE%A1%E7%90%86/">Linux学习记录（六）组管理</a>
           </li>
         
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/categories/">
-              <i class="iconfont icon-category-fill"></i>
-              分类</a>
+          <li>
+            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%BA%94%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E5%8E%8B%E7%BC%A9%E5%92%8C%E8%A7%A3%E5%8E%8B%E7%B1%BB/">Linux学习记录（五）实用指令：压缩和解压类.md</a>
           </li>
         
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/tags/">
-              <i class="iconfont icon-tags-fill"></i>
-              标签</a>
+          <li>
+            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E5%9B%9B%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%90%9C%E7%B4%A2%E6%9F%A5%E6%89%BE%E7%B1%BB/">Linux学习记录（四）实用指令：搜索查找类</a>
           </li>
         
-          
-          
-          
-          <li class="nav-item">
-            <a class="nav-link" href="/about/">
-              <i class="iconfont icon-user-fill"></i>
-              关于</a>
-          </li>
-        
-        
-          <li class="nav-item" id="search-btn">
-            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;&nbsp;<i
-                class="iconfont icon-search"></i>&nbsp;&nbsp;</a>
+          <li>
+            <a href="/2020/05/27/Linux%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95%EF%BC%88%E4%B8%89%EF%BC%89%E5%AE%9E%E7%94%A8%E6%8C%87%E4%BB%A4%EF%BC%9A%E6%97%B6%E9%97%B4%E6%97%A5%E6%9C%9F%E7%B1%BB/">Linux学习记录（三）实用指令：时间日期类</a>
           </li>
         
       </ul>
     </div>
   </div>
-</nav>
 
-    <div class="view intro-2" id="background" parallax=true
-         style="background: url('/img/default.png') no-repeat center center;
-           background-size: cover;">
-      <div class="full-bg-img">
-        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
-          <div class="container text-center white-text fadeInUp">
-            <span class="h2" id="subtitle">
-              
-            </span>
-
-            
-              
-                <div class="mt-3 post-meta">
-                  <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-                  <time datetime="2020-05-12 20:17">
-                    2020年5月12日 晚上
-                  </time>
-                </div>
-              
-
-              <div class="mt-1">
-                
-                  
-                  <span class="post-meta mr-2">
-                    <i class="iconfont icon-chart"></i>
-                    598 字
-                  </span>
-                
-
-                
-                  
-                  <span class="post-meta mr-2">
-                      <i class="iconfont icon-clock-fill"></i>
-                    
-                    
-                    6
-                     分钟
-                  </span>
-                
-
-                
-              </div>
-            
-          </div>
-
-          
-        </div>
+  
+</aside>
+        
       </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 John Doe<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
-  </header>
-
-  <main>
-    
-      
-
-<div class="container-fluid">
-  <div class="row">
-    <div class="d-none d-lg-block col-lg-2"></div>
-    <div class="col-lg-8 nopadding-md">
-      <div class="container nopadding-md" id="board-ctn">
-        <div class="py-5" id="board">
-          <div class="post-content mx-auto" id="post">
-            
-            <article class="markdown-body">
-              <h2 id="1、起因"><a href="#1、起因" class="headerlink" title="1、起因"></a>1、起因</h2><p>闲来无事酷安，偶然间看到有人在刷语雀的推广码，就点进去看了一下，发现 UI 和功能都很能打动我，遂注册登录下载，然后去知乎搜了一下看看大家都怎么看语雀，还是好评居多。又碰巧瞥到了一个 hexo 与语雀结合的案例，并且用 Travis CI 进行自动更新，真是太香了啊，开整。</p>
-<h2 id="2、过程"><a href="#2、过程" class="headerlink" title="2、过程"></a>2、过程</h2><p>从八点钟开始折腾了一晚上，先装了 Ruby，再装 Msys2，结果到最后还是装不上 Travis，一直到后半夜也没搞好。到后来又看到了 GitHub Actions 这个东西，和也能够实现持续集成，结果也还是搞不好，文件、SSH、Token 自我检查感觉全都没问题，结果却一直不成功，好吧，一直折腾到 4 点钟，放弃睡觉。</p>
-<h2 id="3、转折"><a href="#3、转折" class="headerlink" title="3、转折"></a>3、转折</h2><p>后来放弃了持续集成这个念头，决定就用 yuque-hexo 加上自己勤劳的双手手动更新吧，然后看上了一款 hexo 的主题：<a href="https://github.com/hongweifuture/hexo-theme-halo" target="_blank" rel="noopener"><strong>halo</strong></a>，接着开整，结果啊主题下载后，各种文件也配置了，yml 写的也没啥问题，结果一直报错，网上能找到的解决方案寥寥无几也都没有效果，从 10 点一直折腾到下午 2 点，放弃。换一款主题，结果三分钟搞定，虽然效果没有那么炫酷，但是简单、整洁：<strong><a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="noopener">fluid</a>。</strong>找了一下好看的图片，把主题原来的浅色配色改成了深色，总算是告一段落了。<br>成果就是<a href="https://www.lwqlearn.xyz/" target="_blank" rel="noopener"><strong>这样</strong></a>了。</p>
-<h2 id="4、总结"><a href="#4、总结" class="headerlink" title="4、总结"></a>4、总结</h2><p>赏心悦目的设计和酷炫的效果确实诱人，显示现在回想起来为了这写耗费了一整天的时间，是不是值得呢？如果自己的前端知识更丰富一点是不是就不会费这么大的力气了呢？将这些时间用来学习，用原来简洁的 next 主题也很好呀。<br>喜欢折腾不是坏事，但是今天的做法我觉得自己有些本末倒置了，博客最大的作用应该是记录自己的学习和生活轨迹，分享自己的知识和经验，内容才是最重要的，还好我及时转变了思想，现在的这款主题用着也是很香的，嘻嘻。</p>
-
-            </article>
-            <hr>
-            <div>
-              <div class="post-metas mb-3">
-                
-                  <div class="post-meta mr-3">
-                    <i class="iconfont icon-category"></i>
-                    
-                      <a class="hover-with-bg" href="/categories/hexo/">hexo</a>
-                    
-                  </div>
-                
-                
-                  <div class="post-meta">
-                    <i class="iconfont icon-tags"></i>
-                    
-                      <a class="hover-with-bg" href="/tags/hexo/">hexo</a>
-                    
-                      <a class="hover-with-bg" href="/tags/%E7%BE%8E%E5%8C%96/">美化</a>
-                    
-                  </div>
-                
-              </div>
-              
-                <p class="note note-warning">本博客所有文章除特别声明外，均采用 <a href="https://zh.wikipedia.org/wiki/Wikipedia:CC_BY-SA_3.0%E5%8D%8F%E8%AE%AE%E6%96%87%E6%9C%AC" target="_blank" rel="nofollow noopener noopener">CC BY-SA 3.0协议</a> 。转载请注明出处！</p>
-              
-              
-                <div class="post-prevnext row">
-                  <div class="post-prev col-6">
-                    
-                    
-                      <a href="/2020/05/13/yuque/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89%20%E6%95%B0%E6%8D%AE%E5%BA%93%E5%92%8C%E6%8E%A5%E5%8F%A3%E8%AE%BE%E8%AE%A1/">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">项目总结（二） 数据库和接口设计</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
-                  </div>
-                  <div class="post-next col-6">
-                    
-                    
-                      <a href="/2020/04/30/%E9%A1%B9%E7%9B%AE%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89-%E5%85%B3%E4%BA%8EWeb%E9%A1%B9%E7%9B%AE%E6%9E%B6%E6%9E%84%E7%9A%84%E6%80%9D%E8%80%83/">
-                        <span class="hidden-mobile">项目总结（一） 关于Web项目架构的思考</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
-                    
-                  </div>
-                </div>
-              
-            </div>
-
-            
-          </div>
-        </div>
-      </div>
-    </div>
-    
-      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
-        <div id="toc">
-  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
-  <div id="tocbot"></div>
-</div>
-
-      </div>
-    
-  </div>
-</div>
-
-<!-- Custom -->
-
-
-    
-  </main>
-
-  
-    <a id="scroll-top-button" href="#" role="button">
-      <i class="iconfont icon-arrowup" aria-hidden="true"></i>
-    </a>
-  
-
-  
-    <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
-     aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header text-center">
-        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
-        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body mx-3">
-        <div class="md-form mb-5">
-          <input type="text" id="local-search-input" class="form-control validate">
-          <label data-error="x" data-success="v"
-                 for="local-search-input">关键词</label>
-        </div>
-        <div class="list-group" id="local-search-result"></div>
-      </div>
-    </div>
-  </div>
-</div>
-  
-
-  
-
-  
-
-  <footer class="mt-5">
-  <div class="text-center py-3">
-    <div>
-      <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a>
-      <i class="iconfont icon-love"></i>
-      <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener">
-        <span>Fluid</span></a>
-    </div>
-    
-
-    
-  <!-- 备案信息 -->
-  <div>
-    <a href="http://beian.miit.gov.cn/" target="_blank" class="beian-icp"
-       rel="nofollow noopener">鲁ICP备20020455号-1</a>
-    
-  </div>
-
-
-    
   </div>
 </footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
 
-<!-- SCRIPTS -->
-<script  src="https://cdn.staticfile.org/jquery/3.4.1/jquery.min.js" ></script>
-<script  src="https://cdn.staticfile.org/twitter-bootstrap/4.4.1/js/bootstrap.min.js" ></script>
-<script  src="/js/main.js" ></script>
-
-
-  <script  src="/js/lazyload.js" ></script>
-
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 
   
-  <script  src="https://cdn.staticfile.org/tocbot/4.11.1/tocbot.min.js" ></script>
-  <script>
-    $(document).ready(function () {
-      var boardCtn = $('#board-ctn');
-      var boardTop = boardCtn.offset().top;
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
 
-      tocbot.init({
-        tocSelector: '#tocbot',
-        contentSelector: '.post-content',
-        headingSelector: 'h1,h2,h3,h4,h5,h6',
-        linkClass: 'tocbot-link',
-        activeLinkClass: 'tocbot-active-link',
-        listClass: 'tocbot-list',
-        isCollapsedClass: 'tocbot-is-collapsed',
-        collapsibleClass: 'tocbot-is-collapsible',
-        collapseDepth: 0,
-        scrollSmooth: true,
-        headingsOffset: -boardTop
-      });
-      if ($('.toc-list-item').length > 0) {
-        $('#toc').css('visibility', 'visible');
-      }
-    });
-  </script>
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
 
 
 
 
-
-  <script defer src="https://cdn.staticfile.org/clipboard.js/2.0.6/clipboard.min.js" ></script>
-  <script  src="/js/clipboard-use.js" ></script>
+<script src="/js/script.js"></script>
 
 
 
 
-
-
-<!-- Plugins -->
-
-
-
-  <script  src="https://cdn.staticfile.org/typed.js/2.0.11/typed.min.js" ></script>
-  <script>
-    var typed = new Typed('#subtitle', {
-      strings: [
-        '  ',
-        "折腾了一整天的美化，有一些心得&nbsp;",
-      ],
-      cursorChar: "_",
-      typeSpeed: 70,
-      loop: false,
-    });
-    typed.stop();
-    $(document).ready(function () {
-      $(".typed-cursor").addClass("h2");
-      typed.start();
-    });
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/anchor-js/4.2.2/anchor.min.js" ></script>
-  <script>
-    anchors.options = {
-      placement: "right",
-      visible: "hover",
-      
-    };
-    var el = "h1,h2,h3,h4,h5,h6".split(",");
-    var res = [];
-    for (item of el) {
-      res.push(".markdown-body > " + item)
-    }
-    anchors.add(res.join(", "))
-  </script>
-
-
-
-  <script  src="/js/local-search.js" ></script>
-  <script>
-    var path = "/local-search.xml";
-    var inputArea = document.querySelector("#local-search-input");
-    inputArea.onclick = function () {
-      searchFunc(path, 'local-search-input', 'local-search-result');
-      this.onclick = null
-    }
-  </script>
-
-
-
-  <script  src="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.js" ></script>
-  <link  rel="stylesheet" href="https://cdn.staticfile.org/fancybox/3.5.7/jquery.fancybox.min.css" />
-
-  <script>
-    $('#post img:not(.no-zoom img, img[no-zoom]), img[zoom]').each(
-      function () {
-        var element = document.createElement('a');
-        $(element).attr('data-fancybox', 'images');
-        $(element).attr('href', $(this).attr('src'));
-        $(this).wrap(element);
-      }
-    );
-  </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  </div>
 </body>
 </html>
